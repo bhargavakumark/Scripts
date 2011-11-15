@@ -37,8 +37,6 @@ function flock
 	! [ -f "$file" ] && touch $file
 	! [ -f "$file" ] && return 1
 
-	# XXX: currently we just pick the fd higher than any already opened fds
-	# This should be the largest un-opened fd
 	local freefd=`ls /proc/$$/fd | sort -n | awk 'BEGIN{count=0} {if($1 != count) {print count; exit} else {count++}}'` 
 	let freefd=$freefd+1
 
