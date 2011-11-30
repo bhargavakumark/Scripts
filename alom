@@ -1,0 +1,55 @@
+#!/bin/bash
+
+PASS_LIST="changeme calvin root123"
+
+function Usage
+{
+	echo "Usage : $0"
+	echo "           poweron|poweroff|reset|powerstatus <nodename|ip>"
+}
+
+if [ -z "$1" ] || [ -z "$2" ]
+then
+	Usage
+	exit
+fi	
+
+command=$1
+ip=$2
+
+# Try each of the passwords in the list
+for password in $PASS_LIST
+do
+#	export DISPLAY=none:0.0
+#	export SSH_ASKPASS=/tmp/ssh_askpass.sh
+#	pipename="/tmp/ssh_pipe.$$.$$"
+#
+#	echo "echo $password" > $SSH_ASKPASS
+#	chmod 700 ${SSH_ASKPASS}
+#	$ret=0
+
+	case $command in
+	"poweron")
+		perl ~/bin/ssh-execute.pl $ip root $password "set /SP/SystemInfo/CtrlInfo PowerCtrl=on"
+		ret=$?
+		echo 
+		;;
+	"poweroff")
+		perl ~/bin/ssh-execute.pl $ip root $password "set /SP/SystemInfo/CtrlInfo PowerCtrl=forceoff"
+		ret=$?
+		echo 
+		;;
+	"powerreset")
+		perl ~/bin/ssh-execute.pl $ip root $password "set /SP/SystemInfo/CtrlInfo PowerCtrl=reset"
+		ret=$?
+		echo 
+		;;
+	"powerstatus")
+		perl ~/bin/ssh-execute.pl $ip root $password "show /SP/SystemInfo/CtrlInfo"
+		ret=$?
+		echo 
+		;;
+	esac 	
+
+	[ $ret -eq 0 ] && break
+done	
