@@ -257,11 +257,18 @@ if(window.location.hostname == "care.ideacellular.com") {
 }
 
 if(window.location.hostname == "www.divxsubtitles.net") {
-	$(document).ready(function() {
-		document.getElementsByName('remember')[0].checked = "checked";
-		if( document.getElementsByName('userPassword')[0].value != "") {
-			document.getElementsByClassName('formButton')[0].click();
+$(document).ready(function() {
+	if (window.location.pathname == "/index.php") {
+		if (window.location.search.match("c=login")) {
+			document.getElementsByName('remember')[0].checked = "checked";
+			if( document.getElementsByName('userPassword')[0].value != "") {
+				document.getElementsByClassName('formButton')[0].click();
+			}
 		}
-	});
+		if (window.location.search == "") {
+			window.location = "page_subtitles.php";
+		}
+	}
+});
 }
 
