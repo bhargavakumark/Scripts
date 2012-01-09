@@ -210,7 +210,6 @@ if(window.location.hostname == "ngsfdellpe-07.vxindia.veritas.com") {
 		$(document).ready(function() {
 			unsafeWindow.startPlatform();
 			var inputs = document.getElementsByTagName('input');
-			alert(inputs.length);
 			for(var i = 0; i < inputs.length; i++) {
 				if(inputs[i].getAttribute('type') == 'text') {
 					inputs[i].setAttribute('value') == 'root';
