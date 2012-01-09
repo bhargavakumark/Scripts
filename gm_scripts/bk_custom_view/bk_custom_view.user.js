@@ -23,6 +23,8 @@
 // @include        http://www.indianrail.gov.in/*
 // @include        https://care.ideacellular.com/*
 // @include        http://www.divxsubtitles.net/*
+// @include        https://symresource.engba.symantec.com/*
+// @include        https://www.givingstation.com/*
 // ==/UserScript==
 if(window.location.hostname == "in.yahoo.com") {
 	$('.wrapper clearfix').remove();	//Element by class
@@ -206,10 +208,11 @@ if(window.location.hostname == "mail.google.com") {
 if(window.location.hostname == "ngsfdellpe-07.vxindia.veritas.com") {
 	if (window.location.pathname == '/ui/') {
 		$(document).ready(function() {
+			unsafeWindow.startPlatform();
 			var inputs = document.getElementsByTagName('input');
+			alert(inputs.length);
 			for(var i = 0; i < inputs.length; i++) {
 				if(inputs[i].getAttribute('type') == 'text') {
-					alert(i);
 					inputs[i].setAttribute('value') == 'root';
 				}
 			}
@@ -270,5 +273,28 @@ $(document).ready(function() {
 		}
 	}
 });
+}
+
+if(window.location.hostname == "symresource.engba.symantec.com") {
+	if (window.location.pathname == "/mainpage.php") {
+		window.location = "index.php";
+	}
+	if (window.location.pathname == "/index.php") {
+		$(document).ready(function(){
+			document.getElementsByName('UserName')[0].value = "bhargava_kancharla";
+			document.getElementsByName('UserPassword')[0].focus();
+			document.getElementsByName('UserPassword')[0].value = "";
+			document.getElementsByName('RememberLogin')[0].checked = 'checked';
+		});
+	}
+}
+
+if(window.location.hostname == "www.givingstation.com") {
+	if (window.location.pathname == "/login_/form_login.cfm") {
+		$(document).ready(function(){
+			document.getElementsByName('personloginid')[0].value = "bhargava_kancharla@symantec.com";
+			document.getElementsByName('personpwdid')[0].focus();
+		});
+	}
 }
 
