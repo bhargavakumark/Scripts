@@ -119,6 +119,7 @@ alias m="mplayer -hardframedrop"
 
 alias sfsbuild="ssh -X bkancher@sfsbuild.vxindia.veritas.com"
 alias sfsweb="ssh -X bkancher@sfsweb.vxindia.veritas.com"
+alias buildserv="ssh -X bkancher@buildserv_pune.vxindia.veritas.com"
 alias windows="D-7HLVK1S.enterprise.veritas.com"
 alias oo="openoffice"
 alias rdesktop="rdesktop -g 1152x864"
