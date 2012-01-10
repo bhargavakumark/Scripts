@@ -180,6 +180,11 @@
 :iabbrev lenght length
 :iabbrev unxi unix
 :iabbrev ofr for
+:iabbrev disbale disable 
+:iabbrev meida media
+:iabbrev Meida Media
+:iabbrev hte the
+:iabbrev deivce device
 
 function! Mosh_FocusLost_SaveFiles() 
     :exe ":au FocusLost" expand("%") ":wa" 
