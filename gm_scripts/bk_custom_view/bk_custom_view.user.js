@@ -26,7 +26,16 @@
 // @include        https://symresource.engba.symantec.com/*
 // @include        https://www.givingstation.com/*
 // @include        https://webmail-tus.symc.symantec.com/*
+// @include        https://ebpp.airtelworld.com/*
 // ==/UserScript==
+
+function bk_setHint(node, hintstr)
+{
+	var hint = document.createElement('b');
+	node.parentNode.appendChild(hint);
+	hint.textContent = hintstr;
+}
+
 if(window.location.hostname == "in.yahoo.com") {
 	$('.wrapper clearfix').remove();	//Element by class
 	$('.advertise ').remove();		
@@ -154,6 +163,8 @@ if(window.location.hostname == "www.irctc.co.in") {
 			node_list2[0].blur();
 			if(document.getElementsByName('password')[0].value != "") {
 				document.getElementById('button').click();
+			} else {
+				bk_setHint(document.getElementsByName('password')[0], "char,number");
 			}
 		});
 	}
@@ -177,27 +188,29 @@ if(window.location.hostname == "www.irctc.co.in") {
 		}
 	}
 }
-		
+
 if(window.location.hostname == "hrprod.ges.symantec.com") {
 	if (window.location.pathname == "/psp/hrp/" && window.location.search.match("cmd=login")) {
 		$(document).ready(function(){
-	//		document.getElementById('userid').value = "bhargava_kancharla";
-			$('#userid').val("bhargava_kancharla").change();
-			$('#pwd').focus();
-			document.getElementById('pwd').focus();
+//			$('#userid').val("bhargava_kancharla").change();
+			document.getElementById('userid').value = "bhargava_kancharla";
+			bk_setHint(document.getElementById('pwd'), "enterrpise password");
 		});
 	}
 }
 
 if(window.location.hostname == "www.hrworkwaysindia.com") {
 	if (window.location.pathname == "/index.jsp") {
-		$('#p1').val("0085612576").change();
+//		$('#p1').val("0085612576").change();
+		document.getElementById('p1').value = "0085612576";
+		bk_setHint(document.getElementById('p2'), '"9');
 	}
 }
 
 if(window.location.hostname == "login.salesforce.com") {
 	document.getElementById('username').value = 'bhargava_kancharla@symantec.com';
 	document.getElementById('rememberUn').checked = 'checked';
+	bk_setHint(document.getElementById('password'), '"8');
 }
 
 if(window.location.hostname == "mail.google.com") {
@@ -277,13 +290,15 @@ $(document).ready(function() {
 
 if(window.location.hostname == "symresource.engba.symantec.com") {
 	if (window.location.pathname == "/mainpage.php") {
-		window.location = "index.php";
+		window.location = "https://" + window.location.hostname + "/index.php";
+//		window.location = "index.php";
 	}
 	if (window.location.pathname == "/index.php") {
 		$(document).ready(function(){
 			document.getElementsByName('UserName')[0].value = "bhargava_kancharla";
 			document.getElementsByName('UserPassword')[0].focus();
 			document.getElementsByName('UserPassword')[0].value = "";
+			bk_setHint(document.getElementsByName('UserPassword')[0], 'enterprise password');
 			document.getElementsByName('RememberLogin')[0].checked = 'checked';
 		});
 	}
@@ -294,6 +309,7 @@ if(window.location.hostname == "www.givingstation.com") {
 		$(document).ready(function(){
 			document.getElementsByName('personloginid')[0].value = "bhargava_kancharla@symantec.com";
 			document.getElementsByName('personpwdid')[0].focus();
+			bk_setHint(document.getElementsByName('personpwdid')[0], '"9');
 		});
 	}
 }
@@ -303,4 +319,17 @@ if (window.location.hostname == "webmail-tus.symc.symantec.com") {
 		document.getElementsByName('txtbcc')[0].value = "bhargava_kancharla@symantec.com";
 	}
 }
-		
+
+if (window.location.hostname == "ebpp.airtelworld.com") {
+	if (window.location.pathname == "/dthcares/wps/myportal" || window.location.pathname == "/cares/wps/myportal") {
+		$(document).ready(function(){
+			if (document.getElementsByName('username')[0].value != "") {
+				document.getElementsByName('username')[0].value = "bhargavakumark";
+				document.getElementsByName('username')[0].focus();
+				document.getElementsByName('username')[0].blur();
+			}
+			bk_setHint(document.getElementsByName('password')[0],'"9');
+		});
+	}
+}
+
