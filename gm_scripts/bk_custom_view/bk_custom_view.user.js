@@ -25,6 +25,7 @@
 // @include        http://www.divxsubtitles.net/*
 // @include        https://symresource.engba.symantec.com/*
 // @include        https://www.givingstation.com/*
+// @include        https://webmail-tus.symc.symantec.com/*
 // ==/UserScript==
 if(window.location.hostname == "in.yahoo.com") {
 	$('.wrapper clearfix').remove();	//Element by class
@@ -297,3 +298,9 @@ if(window.location.hostname == "www.givingstation.com") {
 	}
 }
 
+if (window.location.hostname == "webmail-tus.symc.symantec.com") {
+	if (window.location.search.match("a=New")) { 
+		document.getElementsByName('txtbcc')[0].value = "bhargava_kancharla@symantec.com";
+	}
+}
+		
