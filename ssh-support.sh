@@ -5,5 +5,5 @@
 args="$*"
 
 setPassword symantec
-exec setsid ssh -n -l support $args
+setsid ssh -l support $args
 
