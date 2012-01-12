@@ -46,7 +46,9 @@ if(window.location.hostname == "indianexpress.com" || window.location.hostname =
 }
 
 if(window.location.hostname == "docs.google.com") {
-	$('#GDS_pageButter').remove();
+	$(document).ready(function(){
+		$('#GDS_pageButter').remove();
+	});
 }
 
 if(window.location.hostname == "engtools.veritas.com") {
@@ -303,4 +305,4 @@ if (window.location.hostname == "webmail-tus.symc.symantec.com") {
 		document.getElementsByName('txtbcc')[0].value = "bhargava_kancharla@symantec.com";
 	}
 }
-		
+
