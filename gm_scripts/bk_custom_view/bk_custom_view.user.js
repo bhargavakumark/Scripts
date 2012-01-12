@@ -8,6 +8,7 @@
 // @include        http://www.indianexpress.com/news/*
 // @include        https://docs.google.com/*
 // @include        https://engtools.veritas.com/*
+// @include        https://engtools.engba.symantec.com/*
 // @include        https://plus.google.com*
 // @include        http://www.imdb.com/*
 // @include        https://www.irctc.co.in/*
@@ -58,7 +59,7 @@ if(window.location.hostname == "docs.google.com") {
 	$('#GDS_pageButter').remove();
 }
 
-if(window.location.hostname == "engtools.veritas.com") {
+if(window.location.hostname == "engtools.veritas.com" || window.location.hostname == "engtools.engba.symantec.com") {
 	//document.getElementsByName('ET_state')[0].onchange = undefined;
 	//$('select[name="ET_state"]').removeAttr("onchange").bind("change", function(){ foo_2(); });
 	//$('select[name*="ET_state"]').hide();
@@ -68,6 +69,7 @@ if(window.location.hostname == "engtools.veritas.com") {
 		document.getElementsByName('ET_assigned_to')[0].value = 'bkancher';
 		document.getElementsByName('ET_target_version')[0].value = '6.0';
 		document.getElementsByName('ET_build')[0].value = 'NA';
+		document.getElementsByName('ET_assigned_to')[0].change();
 	}
 	if(window.location.pathname == "/Etrack/modify_incident.php") {
 		document.getElementsByName('propogate_comment')[0].checked = 'checked';
