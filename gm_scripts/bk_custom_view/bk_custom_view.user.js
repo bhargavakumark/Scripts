@@ -84,6 +84,14 @@ if(window.location.hostname == "engtools.veritas.com" || window.location.hostnam
 			}
 		});
 	}
+	if(window.location.pathname == "/Etrack/welcome.php") {
+		$(document).ready(function(){
+			var node_list = document.getElementsByTagName("TABLE");
+			node_list[6].parentNode.removeChild(node_list[6]);
+			// Once one element is removed, index moves up
+			node_list[6].parentNode.removeChild(node_list[6]);
+		});
+	}
 }
 
 if(window.location.hostname == "plus.google.com") {
