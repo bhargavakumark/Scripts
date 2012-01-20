@@ -28,6 +28,8 @@
 // @include        https://www.givingstation.com/*
 // @include        https://webmail-tus.symc.symantec.com/*
 // @include        https://ebpp.airtelworld.com/*
+// @include        http://www.rediff.com/*
+// @include        http://imsports.rediff.com/*
 // ==/UserScript==
 
 function bk_setHint(node, hintstr)
@@ -341,6 +343,47 @@ if (window.location.hostname == "ebpp.airtelworld.com") {
 				document.getElementsByName('username')[0].blur();
 			}
 			bk_setHint(document.getElementsByName('password')[0],'"9');
+		});
+	}
+}
+
+if (window.location.hostname == "www.rediff.com" || window.location.hostname == "imsports.rediff.com") {
+	if (window.location.pathname.match("slide-show*") && window.location.search == "") {
+		var cur_location = window.location.toString();
+		window.location = cur_location + '?print=true' 
+	}
+	if (window.location.search != "") {	
+		$(document).ready(function(){
+			$('.floatL').remove();
+			$('.toptabsdiv').remove();
+			$('.toprightlinks').remove();
+			$('.relative').remove();
+			$('#socialIcon').remove();
+			$('#socialIcon').remove();
+			$('#socialIcon').remove();
+			$('#socialIcon').remove();
+			$('#socialIcon').remove();
+			$('#socialIcon').remove();
+			$('#socialIcon').remove();
+			$('#socialIcon').remove();
+			$('#socialIcon').remove();
+			$('#socialIcon').remove();
+			$('#socialIcon').remove();
+			$('#socialIcon').remove();
+			$('#socialIcon').remove();
+			$('#socialIcon').remove();
+			$('#socialIcon').remove();
+			$('#socialIcon').remove();
+			$('#socialIcon').remove();
+			$('#socialIcon').remove();
+			$('#boardiframe').remove();
+			$('#rightcontainer').remove();
+			var node = document.getElementById('leftcontainer');
+			if (node) 
+				node.style.removeProperty("width");
+			$('.footer').remove();
+			$('#footerLinks').remove();
+			$('.tagsdiv').remove();
 		});
 	}
 }
