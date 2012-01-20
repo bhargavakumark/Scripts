@@ -5,5 +5,5 @@
 args="$*"
 
 setPassword symantec
-setsid ssh -o UserKnownHostsFile=/dev/null -l support $args
+setsid ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -l support $args
 
