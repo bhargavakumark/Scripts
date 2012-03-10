@@ -3,7 +3,7 @@
 // @namespace      InYahooCom
 // @description    bk_custom_view
 // @require        http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.js
-// @include        http://in.yahoo.com/
+// @include        http://in.yahoo.com/*
 // @include        http://indianexpress.com/news/*
 // @include        http://www.indianexpress.com/news/*
 // @include        https://docs.google.com/*
@@ -103,6 +103,9 @@ if(window.location.hostname == "plus.google.com") {
 if(window.location.hostname == "www.imdb.com") {
 	$('.aux-content-widget-2').remove();
 	$('.bottom-rhs').remove();
+	$('.rec_heading_wrapper').remove();
+	$('.rightcornerlink').remove();
+	$('#title_recs').remove();
 	$('#maindetails_sidebar_top').remove();
 	$('#maindetails_sidebar_bottom').remove();
 }
@@ -110,57 +113,57 @@ if(window.location.hostname == "www.imdb.com") {
 if(window.location.hostname == "www.irctc.co.in") {
 	if(window.location.pathname == "/cgi-bin/bv60.dll/irctc/booking/planner.do") {
 		if (window.location.search.match("ReturnBank*") || window.location.search.match("screen=from*")) {
-			document.getElementsByName('stationFrom')[0].value = "pune";
-			document.getElementsByName('stationTo')[0].value = "hyb";
-			document.getElementsByName('quota')[0].value = "GN";
-			document.getElementsByName('month')[0].value = "1";
-			document.getElementsByName('day')[0].value = "9";
+			document.getElementsByName('stationFrom')[0].value = "hyb";
+			document.getElementsByName('stationTo')[0].value = "pune";
+			document.getElementsByName('quota')[0].value = "CK";
+			document.getElementsByName('month')[0].value = "3";
+			document.getElementsByName('day')[0].value = "11";
 			document.getElementsByName('year')[0].value = "2012";
-			document.getElementById('JDatee')[0].value = "9/01/2012";
+			document.getElementById('JDatee')[0].value = "11/03/2012";
 		} else {
 			$(document).ready(function(){
 				/*
 				node = document.getElementsByName('BookTicketForm')[0];
 				alert(node.BV_SessionID.value);
 				*/
-				document.getElementsByName('dayfravil')[0].value = "09";
-				document.getElementsByName('monthfravil')[0].value = "1";
-				document.getElementsByName('yearfravil')[0].value = "2012";
-				document.getElementsByName('day')[0].value = "09";
-				document.getElementsByName('month')[0].value = "1";
-				document.getElementsByName('year')[0].value = "2012";
-				document.getElementsByName('classCode')[0].value = "SL";
-				document.getElementsByName('clscode')[0].value = "SL";
-				document.getElementsByName('backRoute')[0].value = "true";
-				document.getElementsByName('boardPoint')[0].value = "PUNE";
-				document.getElementsByName('changetext')[0].value = "0";
-				document.getElementsByName('arrival')[0].value = "05:55";
-				document.getElementsByName('departure')[0].value = "16:35";
-				document.getElementsByName('destStation')[0].value = "HYB";
-				document.getElementsByName('stationFrom')[0].value = "PUNE";
-				document.getElementsByName('runsOn')[0].value = "M T W TH F S SU";
-				document.getElementsByName('stationTo')[0].value = "HYB";
-//				document.getElementsByName('timedate')[0].value = "17";
-				document.getElementsByName('trainName')[0].value = "HYDERABAD EXP";
-				document.getElementsByName('trainNo')[0].value = "17031";
-				document.getElementsByName('trainType')[0].value = "B";
-				document.getElementsByName('counterAvail')[0].value = "0";
-//				document.getElementsByName('screen')[0].value = "trainsFromTo";
-//				document.getElementsByName('screen')[0].value = "passenger";
-				document.getElementsByName('screen')[0].value = "bookTicket";
-//				document.getElementsByName('pressedGo')[0].value = "pressedGo";
-				document.getElementsByName('submitClicks')[0].value = parseInt(document.getElementsByName('submitClicks')[0].value) + 1;
-//				document.getElementsByName('BookTicketForm')[0].autocomplete = "on";
-				document.getElementsByName('clscode')[0].value = "SL";
-				document.getElementsByName('browser')[0].value = "::: You're using Mozilla Fire Fox  3.x or above ::: and Operating System is  :   Linux";
-				var node_list = document.getElementsByName("classcode");
-				for (var i = 0; i < node_list.length; i++) {
-					if (node_list[i].value == "SL" ) {
-						node_list[i].checked = "checked";
-					}
-				}
-				document.getElementsByName('classcode')[0].value = "SL";
-				document.getElementsByName('BookTicketForm')[0].submit();
+//				document.getElementsByName('dayfravil')[0].value = "03";
+//				document.getElementsByName('monthfravil')[0].value = "2";
+//				document.getElementsByName('yearfravil')[0].value = "2012";
+//				document.getElementsByName('day')[0].value = "03";
+//				document.getElementsByName('month')[0].value = "2";
+//				document.getElementsByName('year')[0].value = "2012";
+//				document.getElementsByName('classCode')[0].value = "SL";
+//				document.getElementsByName('clscode')[0].value = "SL";
+//				document.getElementsByName('backRoute')[0].value = "true";
+//				document.getElementsByName('boardPoint')[0].value = "PUNE";
+//				document.getElementsByName('changetext')[0].value = "0";
+//				document.getElementsByName('arrival')[0].value = "05:55";
+//				document.getElementsByName('departure')[0].value = "16:35";
+//				document.getElementsByName('destStation')[0].value = "HYB";
+//				document.getElementsByName('stationFrom')[0].value = "HYB";
+//				document.getElementsByName('runsOn')[0].value = "M T W TH F S SU";
+//				document.getElementsByName('stationTo')[0].value = "PUNE";
+////				document.getElementsByName('timedate')[0].value = "17";
+//				document.getElementsByName('trainName')[0].value = "MUMBAI EXP";
+//				document.getElementsByName('trainNo')[0].value = "17031";
+//				document.getElementsByName('trainType')[0].value = "B";
+//				document.getElementsByName('counterAvail')[0].value = "0";
+////				document.getElementsByName('screen')[0].value = "trainsFromTo";
+////				document.getElementsByName('screen')[0].value = "passenger";
+//				document.getElementsByName('screen')[0].value = "bookTicket";
+////				document.getElementsByName('pressedGo')[0].value = "pressedGo";
+//				document.getElementsByName('submitClicks')[0].value = parseInt(document.getElementsByName('submitClicks')[0].value) + 1;
+////				document.getElementsByName('BookTicketForm')[0].autocomplete = "on";
+//				document.getElementsByName('clscode')[0].value = "SL";
+//				document.getElementsByName('browser')[0].value = "::: You're using Mozilla Fire Fox  3.x or above ::: and Operating System is  :   Linux";
+//				var node_list = document.getElementsByName("classcode");
+//				for (var i = 0; i < node_list.length; i++) {
+//					if (node_list[i].value == "SL" ) {
+//						node_list[i].checked = "checked";
+//					}
+//				}
+//				document.getElementsByName('classcode')[0].value = "SL";
+//				document.getElementsByName('BookTicketForm')[0].submit();
 			});
 		}
 	}
@@ -184,14 +187,30 @@ if(window.location.hostname == "www.irctc.co.in") {
 	}
 	if(window.location.pathname == "/cgi-bin/bv60.dll/irctc/booking/bookticket.do") {
 		if (window.location.search.match("click=true*")) {
-			document.getElementsByName('passengers[0].passengerName')[0].value = "bhargava kumar";
+			document.getElementsByName('passengers[0].passengerName')[0].value = "Bhargava kumar";
 			document.getElementsByName('passengers[0].passengerAge')[0].value = "28";
 			document.getElementsByName('passengers[0].passengerSex')[0].value = "m";
 			document.getElementsByName('passengers[0].berthPreffer')[0].value = "Upper";
+			document.getElementsByName('passengers[1].passengerName')[0].value = "Suresh Kumar";
+			document.getElementsByName('passengers[1].passengerAge')[0].value = "28";
+			document.getElementsByName('passengers[1].passengerSex')[0].value = "m";
+			document.getElementsByName('passengers[1].berthPreffer')[0].value = "Upper";
+			document.getElementsByName('passengers[2].passengerName')[0].value = "Ashok Kumar";
+			document.getElementsByName('passengers[2].passengerAge')[0].value = "30";
+			document.getElementsByName('passengers[2].passengerSex')[0].value = "m";
+			document.getElementsByName('passengers[2].berthPreffer')[0].value = "Middle";
+//			document.getElementsByName('passengers[3].passengerName')[0].value = "Sudhakar";
+//			document.getElementsByName('passengers[3].passengerAge')[0].value = "30";
+//			document.getElementsByName('passengers[3].passengerSex')[0].value = "m";
+//			document.getElementsByName('passengers[3].berthPreffer')[0].value = "Lower";
 			document.getElementsByName('upgradeCh')[0].checked = "checked";
 			if (document.getElementsByName('quota')[0].value == "CK") { 
 				document.getElementsByName('passengers[0].idCardType')[0].value = "PANC";
 				document.getElementsByName('passengers[0].idCardNo')[0].value = "asepk3181c";
+//				document.getElementsByName('passengers[1].idCardType')[0].value = "PANC";
+//				document.getElementsByName('passengers[1].idCardNo')[0].value = "avqpk7033a";
+//				document.getElementsByName('passengers[2].idCardType')[0].value = "PANC";
+//				document.getElementsByName('passengers[2].idCardNo')[0].value = "aqwpm4800e";
 			}
 		}
 		if (window.location.search.match("BV_SessionID")) {
@@ -329,7 +348,7 @@ if(window.location.hostname == "www.givingstation.com") {
 }
 
 if (window.location.hostname == "webmail-tus.symc.symantec.com") {
-	if (window.location.search.match("a=New")) { 
+	if (window.location.search.match("a=New") || window.location.search.match("a=Reply")) { 
 		document.getElementsByName('txtbcc')[0].value = "bhargava_kancharla@symantec.com";
 	}
 }
