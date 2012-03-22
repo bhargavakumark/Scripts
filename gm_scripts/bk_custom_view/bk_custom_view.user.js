@@ -29,6 +29,7 @@
 // @include        https://webmail-tus.symc.symantec.com/*
 // @include        https://ebpp.airtelworld.com/*
 // @include        http://www.rediff.com/*
+// @include        http://download.novell.com/*
 // @include        http://imsports.rediff.com/*
 // ==/UserScript==
 
@@ -304,7 +305,7 @@ $(document).ready(function() {
 
 if(window.location.hostname == "symresource.engba.symantec.com") {
 	if (window.location.pathname == "/mainpage.php") {
-		window.location = "https://" + window.location.hostname + "/index.php";
+//		window.location = "https://" + window.location.hostname + "/index.php";
 //		window.location = "index.php";
 	}
 	if (window.location.pathname == "/index.php") {
@@ -388,3 +389,8 @@ if (window.location.hostname == "www.rediff.com" || window.location.hostname == 
 	}
 }
 
+if (window.location.hostname == "download.novell.com") {
+	$(document).ready(function(){
+		$('#ftr').remove();
+	});
+}
