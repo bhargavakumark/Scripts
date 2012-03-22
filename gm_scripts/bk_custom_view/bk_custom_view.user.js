@@ -117,9 +117,9 @@ if(window.location.hostname == "www.irctc.co.in") {
 			document.getElementsByName('stationTo')[0].value = "pune";
 			document.getElementsByName('quota')[0].value = "CK";
 			document.getElementsByName('month')[0].value = "3";
-			document.getElementsByName('day')[0].value = "11";
+			document.getElementsByName('day')[0].value = "17";
 			document.getElementsByName('year')[0].value = "2012";
-			document.getElementById('JDatee')[0].value = "11/03/2012";
+			document.getElementById('JDatee')[0].value = "17/03/2012";
 		} else {
 			$(document).ready(function(){
 				/*
@@ -191,14 +191,14 @@ if(window.location.hostname == "www.irctc.co.in") {
 			document.getElementsByName('passengers[0].passengerAge')[0].value = "28";
 			document.getElementsByName('passengers[0].passengerSex')[0].value = "m";
 			document.getElementsByName('passengers[0].berthPreffer')[0].value = "Upper";
-			document.getElementsByName('passengers[1].passengerName')[0].value = "Suresh Kumar";
-			document.getElementsByName('passengers[1].passengerAge')[0].value = "28";
-			document.getElementsByName('passengers[1].passengerSex')[0].value = "m";
-			document.getElementsByName('passengers[1].berthPreffer')[0].value = "Upper";
-			document.getElementsByName('passengers[2].passengerName')[0].value = "Ashok Kumar";
-			document.getElementsByName('passengers[2].passengerAge')[0].value = "30";
-			document.getElementsByName('passengers[2].passengerSex')[0].value = "m";
-			document.getElementsByName('passengers[2].berthPreffer')[0].value = "Middle";
+//			document.getElementsByName('passengers[1].passengerName')[0].value = "Suresh Kumar";
+//			document.getElementsByName('passengers[1].passengerAge')[0].value = "28";
+//			document.getElementsByName('passengers[1].passengerSex')[0].value = "m";
+//			document.getElementsByName('passengers[1].berthPreffer')[0].value = "Upper";
+//			document.getElementsByName('passengers[2].passengerName')[0].value = "Ashok Kumar";
+//			document.getElementsByName('passengers[2].passengerAge')[0].value = "30";
+//			document.getElementsByName('passengers[2].passengerSex')[0].value = "m";
+//			document.getElementsByName('passengers[2].berthPreffer')[0].value = "Middle";
 //			document.getElementsByName('passengers[3].passengerName')[0].value = "Sudhakar";
 //			document.getElementsByName('passengers[3].passengerAge')[0].value = "30";
 //			document.getElementsByName('passengers[3].passengerSex')[0].value = "m";
