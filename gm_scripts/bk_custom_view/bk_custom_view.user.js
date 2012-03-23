@@ -118,9 +118,9 @@ if(window.location.hostname == "www.irctc.co.in") {
 			document.getElementsByName('stationTo')[0].value = "pune";
 			document.getElementsByName('quota')[0].value = "CK";
 			document.getElementsByName('month')[0].value = "3";
-			document.getElementsByName('day')[0].value = "17";
-			document.getElementsByName('year')[0].value = "2012";
-			document.getElementById('JDatee')[0].value = "17/03/2012";
+//			document.getElementsByName('day')[0].value = "17";
+//			document.getElementsByName('year')[0].value = "2012";
+//			document.getElementById('JDatee')[0].value = "17/03/2012";
 		} else {
 			$(document).ready(function(){
 				/*
