@@ -188,10 +188,14 @@ if(window.location.hostname == "www.irctc.co.in") {
 	}
 	if(window.location.pathname == "/cgi-bin/bv60.dll/irctc/booking/bookticket.do") {
 		if (window.location.search.match("click=true*")) {
-			document.getElementsByName('passengers[0].passengerName')[0].value = "Bhargava kumar";
-			document.getElementsByName('passengers[0].passengerAge')[0].value = "28";
+			document.getElementsByName('passengers[0].passengerName')[0].value = "Maheshwar Reddy";
+			document.getElementsByName('passengers[0].passengerAge')[0].value = "31";
 			document.getElementsByName('passengers[0].passengerSex')[0].value = "m";
 			document.getElementsByName('passengers[0].berthPreffer')[0].value = "Upper";
+//			document.getElementsByName('passengers[0].passengerName')[0].value = "Bhargava kumar";
+//			document.getElementsByName('passengers[0].passengerAge')[0].value = "28";
+//			document.getElementsByName('passengers[0].passengerSex')[0].value = "m";
+//			document.getElementsByName('passengers[0].berthPreffer')[0].value = "Upper";
 //			document.getElementsByName('passengers[1].passengerName')[0].value = "Suresh Kumar";
 //			document.getElementsByName('passengers[1].passengerAge')[0].value = "28";
 //			document.getElementsByName('passengers[1].passengerSex')[0].value = "m";
@@ -206,8 +210,10 @@ if(window.location.hostname == "www.irctc.co.in") {
 //			document.getElementsByName('passengers[3].berthPreffer')[0].value = "Lower";
 			document.getElementsByName('upgradeCh')[0].checked = "checked";
 			if (document.getElementsByName('quota')[0].value == "CK") { 
+//				document.getElementsByName('passengers[0].idCardType')[0].value = "PANC";
+//				document.getElementsByName('passengers[0].idCardNo')[0].value = "asepk3181c";
 				document.getElementsByName('passengers[0].idCardType')[0].value = "PANC";
-				document.getElementsByName('passengers[0].idCardNo')[0].value = "asepk3181c";
+				document.getElementsByName('passengers[0].idCardNo')[0].value = "airpg1620p";
 //				document.getElementsByName('passengers[1].idCardType')[0].value = "PANC";
 //				document.getElementsByName('passengers[1].idCardNo')[0].value = "avqpk7033a";
 //				document.getElementsByName('passengers[2].idCardType')[0].value = "PANC";
