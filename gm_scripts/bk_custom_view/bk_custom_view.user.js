@@ -31,6 +31,8 @@
 // @include        http://www.rediff.com/*
 // @include        http://download.novell.com/*
 // @include        http://imsports.rediff.com/*
+// @include        http://timesofindia.indiatimes.com/*
+// @include        http://www.firstpost.com/*
 // ==/UserScript==
 
 function bk_setHint(node, hintstr)
@@ -72,7 +74,7 @@ if(window.location.hostname == "engtools.veritas.com" || window.location.hostnam
 		document.getElementsByName('ET_description')[0].value = "";
 		document.getElementsByName('ET_user_defined_list2')[0].value = '';
 		document.getElementsByName('ET_assigned_to')[0].value = 'bkancher';
-		document.getElementsByName('ET_target_version')[0].value = '6.0';
+		document.getElementsByName('ET_target_version')[0].value = '5.7P2';
 		document.getElementsByName('ET_build')[0].value = 'NA';
 		document.getElementsByName('ET_assigned_to')[0].change();
 	}
@@ -118,9 +120,9 @@ if(window.location.hostname == "www.irctc.co.in") {
 			document.getElementsByName('stationTo')[0].value = "pune";
 			document.getElementsByName('quota')[0].value = "CK";
 			document.getElementsByName('month')[0].value = "3";
-//			document.getElementsByName('day')[0].value = "17";
-//			document.getElementsByName('year')[0].value = "2012";
-//			document.getElementById('JDatee')[0].value = "17/03/2012";
+			document.getElementsByName('day')[0].value = "24";
+			document.getElementsByName('year')[0].value = "2012";
+			document.getElementById('JDatee')[0].value = "24/03/2012";
 		} else {
 			$(document).ready(function(){
 				/*
@@ -250,7 +252,7 @@ if(window.location.hostname == "www.hrworkwaysindia.com") {
 if(window.location.hostname == "login.salesforce.com") {
 	document.getElementById('username').value = 'bhargava_kancharla@symantec.com';
 	document.getElementById('rememberUn').checked = 'checked';
-	bk_setHint(document.getElementById('password'), '"8');
+	bk_setHint(document.getElementById('password'), '"7');
 }
 
 if(window.location.hostname == "mail.google.com") {
@@ -419,3 +421,31 @@ if (window.location.hostname == "download.novell.com") {
 		$('#ftr').remove();
 	});
 }
+
+if (window.location.hostname == "timesofindia.indiatimes.com") {
+	$(document).ready(function(){
+		$('#slidebox').remove();
+		$('#fcbk').remove();
+		$('.prvnxtbg').remove();
+		$('.maintable13').remove();
+		$('#populatecomment').remove();
+		$('#relmaindiv').remove();
+		$('#moreinsideslider').remove();
+		$('.redbdr').remove();
+		$('.clrbth').remove();
+		$('.clrb').remove();
+		$('.otgns').remove();
+		$('.bcclftr').remove();
+		$('#fbrecommend').remove();
+		$('.tabsintbgshow1').remove();
+	});
+}
+
+if (window.location.hostname == "www.firstpost.com") {
+	$(document).ready(function(){
+		$('.inner_header').remove();
+		$('.mfwlist').remove();
+		$('.mfw_list').remove();
+	});
+}
+
