@@ -31,6 +31,7 @@
 // @include        http://www.rediff.com/*
 // @include        http://download.novell.com/*
 // @include        http://imsports.rediff.com/*
+// @include        http://live2.cricbuzz.com/*
 // ==/UserScript==
 
 function bk_setHint(node, hintstr)
@@ -99,6 +100,9 @@ if(window.location.hostname == "engtools.veritas.com" || window.location.hostnam
 
 if(window.location.hostname == "plus.google.com") {
 	$('.a-j c-i-j-ua tg3b4c qQWXrb g2Lc3b dfrbjb').remove();
+	$(document).ready(function() {
+		$('.hba xV').remove();
+	});
 }
 
 if(window.location.hostname == "www.imdb.com") {
@@ -117,10 +121,10 @@ if(window.location.hostname == "www.irctc.co.in") {
 			document.getElementsByName('stationFrom')[0].value = "hyb";
 			document.getElementsByName('stationTo')[0].value = "pune";
 			document.getElementsByName('quota')[0].value = "CK";
-			document.getElementsByName('month')[0].value = "3";
-//			document.getElementsByName('day')[0].value = "17";
+//			document.getElementsByName('month')[0].value = "3";
+//			document.getElementsByName('day')[0].value = "24";
 //			document.getElementsByName('year')[0].value = "2012";
-//			document.getElementById('JDatee')[0].value = "17/03/2012";
+//			document.getElementById('JDatee')[0].value = "24/03/2012";
 		} else {
 			$(document).ready(function(){
 				/*
@@ -188,8 +192,8 @@ if(window.location.hostname == "www.irctc.co.in") {
 	}
 	if(window.location.pathname == "/cgi-bin/bv60.dll/irctc/booking/bookticket.do") {
 		if (window.location.search.match("click=true*")) {
-			document.getElementsByName('passengers[0].passengerName')[0].value = "Maheshwar Reddy";
-			document.getElementsByName('passengers[0].passengerAge')[0].value = "31";
+			document.getElementsByName('passengers[0].passengerName')[0].value = "Bhargava Kumar";
+			document.getElementsByName('passengers[0].passengerAge')[0].value = "28";
 			document.getElementsByName('passengers[0].passengerSex')[0].value = "m";
 			document.getElementsByName('passengers[0].berthPreffer')[0].value = "Upper";
 //			document.getElementsByName('passengers[0].passengerName')[0].value = "Bhargava kumar";
@@ -210,10 +214,10 @@ if(window.location.hostname == "www.irctc.co.in") {
 //			document.getElementsByName('passengers[3].berthPreffer')[0].value = "Lower";
 			document.getElementsByName('upgradeCh')[0].checked = "checked";
 			if (document.getElementsByName('quota')[0].value == "CK") { 
-//				document.getElementsByName('passengers[0].idCardType')[0].value = "PANC";
-//				document.getElementsByName('passengers[0].idCardNo')[0].value = "asepk3181c";
 				document.getElementsByName('passengers[0].idCardType')[0].value = "PANC";
-				document.getElementsByName('passengers[0].idCardNo')[0].value = "airpg1620p";
+				document.getElementsByName('passengers[0].idCardNo')[0].value = "asepk3181c";
+//				document.getElementsByName('passengers[0].idCardType')[0].value = "PANC";
+//				document.getElementsByName('passengers[0].idCardNo')[0].value = "airpg1620p";
 //				document.getElementsByName('passengers[1].idCardType')[0].value = "PANC";
 //				document.getElementsByName('passengers[1].idCardNo')[0].value = "avqpk7033a";
 //				document.getElementsByName('passengers[2].idCardType')[0].value = "PANC";
@@ -417,5 +421,13 @@ if (window.location.hostname == "www.rediff.com" || window.location.hostname == 
 if (window.location.hostname == "download.novell.com") {
 	$(document).ready(function(){
 		$('#ftr').remove();
+	});
+}
+
+if (window.location.hostname == "live2.cricbuzz.com") {
+	$(document).ready(function(){
+		$('#footer-main-container').remove();
+		$('#cbz_chat_container').remove();
+		$('#header').remove();
 	});
 }
