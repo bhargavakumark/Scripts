@@ -75,7 +75,7 @@ if(window.location.hostname == "engtools.veritas.com" || window.location.hostnam
 		document.getElementsByName('ET_description')[0].value = "";
 		document.getElementsByName('ET_user_defined_list2')[0].value = '';
 		document.getElementsByName('ET_assigned_to')[0].value = 'bkancher';
-		document.getElementsByName('ET_target_version')[0].value = '5.7P2';
+		document.getElementsByName('ET_target_version')[0].value = '5.7MP1';
 		document.getElementsByName('ET_build')[0].value = 'NA';
 		document.getElementsByName('ET_assigned_to')[0].change();
 	}
