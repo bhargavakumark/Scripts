@@ -34,6 +34,7 @@
 // @include        http://timesofindia.indiatimes.com/*
 // @include        http://www.firstpost.com/*
 // @include        http://live2.cricbuzz.com/*
+// @include        http://live.cricbuzz.com/*
 // ==/UserScript==
 
 function bk_setHint(node, hintstr)
@@ -123,17 +124,10 @@ if(window.location.hostname == "www.irctc.co.in") {
 			document.getElementsByName('stationFrom')[0].value = "hyb";
 			document.getElementsByName('stationTo')[0].value = "pune";
 			document.getElementsByName('quota')[0].value = "CK";
-<<<<<<< HEAD
 //			document.getElementsByName('month')[0].value = "3";
 //			document.getElementsByName('day')[0].value = "24";
 //			document.getElementsByName('year')[0].value = "2012";
 //			document.getElementById('JDatee')[0].value = "24/03/2012";
-=======
-			document.getElementsByName('month')[0].value = "3";
-			document.getElementsByName('day')[0].value = "24";
-			document.getElementsByName('year')[0].value = "2012";
-			document.getElementById('JDatee')[0].value = "24/03/2012";
->>>>>>> 2568586c9e32be610cbad2ed3f2d5729ac929cc6
 		} else {
 			$(document).ready(function(){
 				/*
@@ -460,7 +454,7 @@ if (window.location.hostname == "www.firstpost.com") {
 	});
 }
 
-if (window.location.hostname == "live2.cricbuzz.com") {
+if (window.location.hostname == "live2.cricbuzz.com" || window.location.hostname == "live.cricbuzz.com") {
 	$(document).ready(function(){
 		$('#footer-main-container').remove();
 		$('#cbz_chat_container').remove();
