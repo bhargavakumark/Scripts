@@ -83,8 +83,8 @@ if(window.location.hostname == "engtools.veritas.com" || window.location.hostnam
 	if(window.location.pathname == "/Etrack/create_incident.php") {
 		document.getElementsByName('ET_description')[0].value = "";
 		document.getElementsByName('ET_user_defined_list2')[0].value = '';
-		document.getElementsByName('ET_assigned_to')[0].value = 'bkancher';
-		document.getElementsByName('ET_target_version')[0].value = '5.7MP1';
+//		document.getElementsByName('ET_assigned_to')[0].value = 'bkancher';
+		document.getElementsByName('ET_target_version')[0].value = '6.0';
 		document.getElementsByName('ET_build')[0].value = 'NA';
 		document.getElementsByName('ET_assigned_to')[0].change();
 	}
@@ -105,6 +105,18 @@ if(window.location.hostname == "engtools.veritas.com" || window.location.hostnam
 			node_list[6].parentNode.removeChild(node_list[6]);
 			// Once one element is removed, index moves up
 			node_list[6].parentNode.removeChild(node_list[6]);
+		});
+	}
+	if(window.location.pathname == "/toro/login.php" && !window.location.search.match("logout*")) {
+		$(document).ready(function(){
+//			alert ("here");
+			document.getElementsByName('login')[0].value = 'bhargava_kancharla';
+			document.getElementsByName('remember')[0].checked = 'checked';
+			document.getElementsByName('password')[0].focus();
+			if( document.getElementsByName('password')[0].value != "") {
+				alert ("here2");
+				document.getElementsByName('B1')[0].click();
+			} 
 		});
 	}
 }
@@ -129,8 +141,8 @@ if(window.location.hostname == "www.imdb.com") {
 if(window.location.hostname == "www.irctc.co.in") {
 	if(window.location.pathname == "/cgi-bin/bv60.dll/irctc/booking/planner.do") {
 		if (window.location.search.match("ReturnBank*") || window.location.search.match("screen=from*")) {
-			document.getElementsByName('stationFrom')[0].value = "hyb";
-			document.getElementsByName('stationTo')[0].value = "pune";
+			document.getElementsByName('stationFrom')[0].value = "pune";
+			document.getElementsByName('stationTo')[0].value = "hyb";
 			document.getElementsByName('quota')[0].value = "CK";
 //			document.getElementsByName('month')[0].value = "3";
 //			document.getElementsByName('day')[0].value = "24";
@@ -265,7 +277,7 @@ if(window.location.hostname == "www.hrworkwaysindia.com") {
 if(window.location.hostname == "login.salesforce.com") {
 	document.getElementById('username').value = 'bhargava_kancharla@symantec.com';
 	document.getElementById('rememberUn').checked = 'checked';
-	bk_setHint(document.getElementById('password'), '"7');
+	bk_setHint(document.getElementById('password'), '"6');
 }
 
 if(window.location.hostname == "mail.google.com") {

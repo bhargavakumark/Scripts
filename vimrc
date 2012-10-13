@@ -185,6 +185,12 @@
 :iabbrev Meida Media
 :iabbrev hte the
 :iabbrev deivce device
+:iabbrev optinos options
+:iabbrev referenece reference
+:iabbrev witdh width
+:iabbrev ouput output
+:iabbrev prinft printf
+:iabbrev evn env
 
 function! Mosh_FocusLost_SaveFiles() 
     :exe ":au FocusLost" expand("%") ":wa" 
@@ -233,4 +239,18 @@ endif
 
 set wildmode=longest,list
 set wildmenu
+
+if has("cscope")
+	set csto=0
+	set nocst
+	set nocsverb
+	" add any database in current directory
+	if filereadable("cscope.out")
+		cs add cscope.out
+	" else add database pointed to by environment
+	elseif $CSCOPE_DB != ""
+		cs add $CSCOPE_DB
+	endif
+	set csverb
+endif
 

@@ -93,11 +93,6 @@ export VCS_TC_LDAP_USER=tcuser0987654321
 
 TC_DIR="/home/bhargava/local_detach/nasgw/TC"
 
-alias dellpe_1="ssh root@ngsfdell_1"
-alias dellpe_2="ssh root@ngsfdell_2"
-alias dellpe_3="ssh root@ngsfdell_3"
-alias dellpe_4="ssh root@ngsfdell_4"
-alias u="cvs update"
 alias dellpe-06="ssh root@ngsfdellpe-06.vxindia.veritas.com"
 alias dellpe-07="ssh -X root@ngsfdellpe-07.vxindia.veritas.com"
 alias dellpe-08="ssh -X root@ngsfdellpe-08.vxindia.veritas.com"
@@ -113,9 +108,8 @@ alias nasgw12_02="ssh root@nasgw12_02"
 export HISTIGNORE="&:ls:mutt:[bf]g:exit" 
 
 export KDE_COOKIES="/home/bhargava/.kde/share/apps/kcookiejar/cookies"
-alias wget="wget --load-cookies=$KDE_COOKIES"
-alias mplayer="mplayer -framedrop"
-alias m="mplayer -hardframedrop"
+alias wget="wget --load-cookies=$KDE_COOKIES --continue"
+alias m="mplayer -vo gl -hardframedrop"
 
 alias sfsbuild="ssh -X bkancher@sfsbuild.vxindia.veritas.com"
 alias sfsweb="ssh -X bkancher@sfsweb.vxindia.veritas.com"
@@ -129,3 +123,12 @@ alias sles10sp3="ssh -X root@sles10sp3"
 alias rhel6="ssh -X root@rhel6"
 alias rhel5="ssh -X root@rhel5"
 alias wineie="wine /home/bhargava/.wine/drive_c/Program\ Files/Internet\ Explorer/iexplore.exe"
+alias dellpe12_01="ssh -X root@dellpe12_01"
+alias dellpe12_02="ssh -X root@dellpe12_02"
+alias dellpe-03="ssh root@dellpe-03"
+alias synergy_quick="quicksynergy"
+alias cdiff="cvs diff -Nau"
+alias ftp="ftp -z nossl"
+export NSS_SSL_CBC_RANDOM_IV=0
+alias windows="rdesktop -g 1152x864 172.31.168.160 -u bhargava_kancharla"
+export USE_CCACHE=1
