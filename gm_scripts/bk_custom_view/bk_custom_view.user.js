@@ -75,8 +75,8 @@ if(window.location.hostname == "engtools.veritas.com" || window.location.hostnam
 	if(window.location.pathname == "/Etrack/create_incident.php") {
 		document.getElementsByName('ET_description')[0].value = "";
 		document.getElementsByName('ET_user_defined_list2')[0].value = '';
-		document.getElementsByName('ET_assigned_to')[0].value = 'bkancher';
-		document.getElementsByName('ET_target_version')[0].value = '5.7MP1';
+//		document.getElementsByName('ET_assigned_to')[0].value = 'bkancher';
+		document.getElementsByName('ET_target_version')[0].value = '6.0';
 		document.getElementsByName('ET_build')[0].value = 'NA';
 		document.getElementsByName('ET_assigned_to')[0].change();
 	}
