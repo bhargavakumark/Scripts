@@ -5,6 +5,7 @@
 // @require        http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.js
 // @include        http://in.yahoo.com/*
 // @include        http://indianexpress.com/news/*
+// @include        http://www.expressindia.com/*
 // @include        http://www.indianexpress.com/news/*
 // @include        https://docs.google.com/*
 // @include        https://engtools.veritas.com/*
@@ -14,6 +15,7 @@
 // @include        https://www.irctc.co.in/*
 // @include        https://hrprod.ges.symantec.com/*
 // @include        https://www.hrworkwaysindia.com/*
+// @include        https://hrworkwaysindia.com/*
 // @include        https://login.salesforce.com*
 // @include        https://mail.google.com/*
 // @include        https://ngsfdellpe-07.vxindia.veritas.com*
@@ -35,6 +37,8 @@
 // @include        http://www.firstpost.com/*
 // @include        http://live2.cricbuzz.com/*
 // @include        http://live.cricbuzz.com/*
+// @include        http://in.news.yahoo.com/*
+// @include        http://www.fark.com/*
 // ==/UserScript==
 
 function bk_setHint(node, hintstr)
@@ -60,6 +64,10 @@ if(window.location.hostname == "indianexpress.com" || window.location.hostname =
 	$('#express_special').remove();
 	$('#google_new').remove();
 	$('.picture_gal').remove();
+}
+
+if(window.location.hostname == "www.expressindia.com") {
+	$('.story_add').remove();
 }
 
 if(window.location.hostname == "docs.google.com") {
@@ -196,7 +204,7 @@ if(window.location.hostname == "www.irctc.co.in") {
 	if(window.location.pathname == "/cgi-bin/bv60.dll/irctc/booking/bookticket.do") {
 		if (window.location.search.match("click=true*")) {
 			document.getElementsByName('passengers[0].passengerName')[0].value = "Bhargava Kumar";
-			document.getElementsByName('passengers[0].passengerAge')[0].value = "28";
+			document.getElementsByName('passengers[0].passengerAge')[0].value = "29";
 			document.getElementsByName('passengers[0].passengerSex')[0].value = "m";
 			document.getElementsByName('passengers[0].berthPreffer')[0].value = "Upper";
 //			document.getElementsByName('passengers[0].passengerName')[0].value = "Bhargava kumar";
@@ -385,6 +393,11 @@ if (window.location.hostname == "www.rediff.com" || window.location.hostname == 
 		var cur_location = window.location.toString();
 		window.location = cur_location + '?print=true' 
 	}
+	if (window.location.pathname.match("slide-show*") && window.location.search == "?print=true") {
+		$(document).ready(function() {
+			$('#zarabol_widget').remove();	//Element by id
+		});
+	}
 	if (window.location.search != "") {	
 		$(document).ready(function(){
 			$('.floatL').remove();
@@ -460,4 +473,15 @@ if (window.location.hostname == "live2.cricbuzz.com" || window.location.hostname
 		$('#cbz_chat_container').remove();
 		$('#header').remove();
 	});
+}
+
+if (window.location.hostname == "in.news.yahoo.com") {
+//	$(document).ready(function(){
+		$('.yog-col yog-8u yog-col-last yom-secondary').remove();	//Element by class
+		$('.yog-wrap yog-full').remove();	//Element by class
+//	});
+}
+
+if (window.location.hostname == "www.fark.com") {
+	$('#commentsArea').remove();
 }
