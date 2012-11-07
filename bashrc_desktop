@@ -132,3 +132,6 @@ alias ftp="ftp -z nossl"
 export NSS_SSL_CBC_RANDOM_IV=0
 alias windows="rdesktop -g 1152x864 172.31.168.160 -u bhargava_kancharla"
 export USE_CCACHE=1
+alias sfsman3_01="ssh -X root@sfsman3_01"
+alias sfsman3_02="ssh -X root@sfsman3_02"
+
