@@ -277,7 +277,7 @@ if(window.location.hostname == "www.hrworkwaysindia.com") {
 if(window.location.hostname == "login.salesforce.com") {
 	document.getElementById('username').value = 'bhargava_kancharla@symantec.com';
 	document.getElementById('rememberUn').checked = 'checked';
-	bk_setHint(document.getElementById('password'), '"6');
+	bk_setHint(document.getElementById('password'), '"5');
 }
 
 if(window.location.hostname == "mail.google.com") {
