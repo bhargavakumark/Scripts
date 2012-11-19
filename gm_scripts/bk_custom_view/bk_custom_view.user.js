@@ -270,7 +270,7 @@ if(window.location.hostname == "www.hrworkwaysindia.com") {
 	if (window.location.pathname == "/index.jsp") {
 //		$('#p1').val("0085612576").change();
 		document.getElementById('p1').value = "0085612576";
-		bk_setHint(document.getElementById('p2'), '"9');
+		bk_setHint(document.getElementById('p2'), '"8');
 	}
 }
 
