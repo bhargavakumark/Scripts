@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<Foundry>
+<VM>
+<VMId type="string">52 6a e7 ee 37 cf 86 ac-21 14 bf 89 77 52 df 9d</VMId>
+<ClientMetaData>
+<clientMetaDataAttributes/>
+<HistoryEventList/></ClientMetaData>
+<vmxPathName type="string">tc_template.vmx</vmxPathName></VM></Foundry>
