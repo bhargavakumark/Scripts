@@ -502,6 +502,5 @@ if (window.location.hostname == "www.fark.com") {
 
 if(window.location.hostname == "portal.beamtele.com") {
 	document.getElementById('url_username').value = 'bhargavakumark@yahoo.com';
-	document.getElementById('url_userpassword').checked = 'bhargava';
 }
 
