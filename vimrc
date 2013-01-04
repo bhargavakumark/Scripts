@@ -254,3 +254,4 @@ if has("cscope")
 	set csverb
 endif
 
+set tags=tags;~

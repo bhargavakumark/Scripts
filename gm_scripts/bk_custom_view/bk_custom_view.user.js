@@ -39,6 +39,8 @@
 // @include        http://live.cricbuzz.com/*
 // @include        http://in.news.yahoo.com/*
 // @include        http://www.fark.com/*
+// @include        http://portal.beamtele.com/*
+// @include        http://portal.beamtele.com/#
 // ==/UserScript==
 
 function bk_setHint(node, hintstr)
@@ -497,3 +499,9 @@ if (window.location.hostname == "in.news.yahoo.com") {
 if (window.location.hostname == "www.fark.com") {
 	$('#commentsArea').remove();
 }
+
+if(window.location.hostname == "portal.beamtele.com") {
+	document.getElementById('url_username').value = 'bhargavakumark@yahoo.com';
+	document.getElementById('url_userpassword').checked = 'bhargava';
+}
+
