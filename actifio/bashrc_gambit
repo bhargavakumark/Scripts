@@ -1,0 +1,13 @@
+#!/bin/bash
+
+[ -f /etc/bash.bashrc ] && . /etc/bash.bashrc
+[ -f /etc/bash.rc.sav ] && . /etc/bash.rc.sav
+[ -f ~/.bash_profile ] && . ~/.bash_profile
+[ -f ~/.bashrc ] && . ~/.bashrc
+
+alias xmlformat="xmllint --format --recover"
+alias vim="vim -u ~/bhargava/.vimrc"
+export TMOUT="0"
+unset TMOUT
+
+
