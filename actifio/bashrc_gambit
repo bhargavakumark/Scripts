@@ -7,6 +7,8 @@
 
 alias xmlformat="xmllint --format --recover"
 alias vim="vim -u ~/bhargava/.vimrc"
+alias grep='grep --color'
+export PATH=$PATH:~/bhargava/bin
 export TMOUT="0"
 unset TMOUT
 
