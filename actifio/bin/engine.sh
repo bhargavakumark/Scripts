@@ -11,6 +11,7 @@ prdm=false
 bin=/act/bin/udprestore.bhargava.01
 job=Job_bhargava
 app=
+deletejobhistory=0
 
 function Usage
 {
@@ -45,6 +46,10 @@ expiremounts)
         exit 1
     fi
     expiremounts
+    ;;
+
+deletejobhistory)
+    jobHistoryDelete $job
     ;;
 
 *)
