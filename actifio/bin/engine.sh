@@ -16,13 +16,19 @@ delete=0
 
 function Usage
 {
-    echo "TODO"
+    echo "Default for -bin is ~/bhargava/udpengine.bhargava.01"
+    echo "Default for -job is Job_bhargava"
+    echo "$0 deleteimage -image <image> [-bin <binary-to-use>] [-job <job-name>]"
+    echo "$0 unmountimage -image <image> [-delete] [-bin <binary-to-use>] [-job <job-name>]"
+    echo "$0 mountimage -image <image> -host <host> [-physicalrdm] [-bin <binary-to-use>] [-job <job-name>]"
+    echo "$0 expiremounts -app <appid/appname> [-bin <binary-to-use>] [-job <job-name>]"
+    echo "$0 deletejobhistory -job <job-name>"
 }
 
 cmd=$1
 shift
 if [ -z "$1" ]; then
-    Usage
+    Usage $*
     exit 1
 fi
 
@@ -63,7 +69,7 @@ deletejobhistory)
 
 *)
     echo Inavlid command : $cmd
-    Usage
+    Usage $*
     exit 1
     ;;
 esac
