@@ -8,10 +8,11 @@ set -x
 image=Image_0005462
 host=sles11sp2-01
 prdm=false
-bin=/act/bin/udprestore.bhargava.01
+bin=~/bhargava/udpengine.bhargava.01
 job=Job_bhargava
 app=
 deletejobhistory=0
+delete=0
 
 function Usage
 {
@@ -37,7 +38,15 @@ mountimage)
     ;;
 
 unmountimage)
-    unmountimage ; ret=$?
+    unmountimage $image ; ret=$?
+    [ $ret -ne 0 ] && break
+    if [ $delete -eq 1 ]; then
+        deleteimage $image ; ret=$?
+    fi
+    ;;
+
+deleteimage)
+    deleteimage $image ; ret=$?
     ;;
 
 expiremounts)
