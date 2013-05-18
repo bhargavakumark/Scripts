@@ -25,10 +25,12 @@ function Usage
     echo "$0 deleteimage -image <image> [-bin <binary-to-use>] [-job <job-name>]"
     echo "$0 unmountimage -image <image> [-delete] [-bin <binary-to-use>] [-job <job-name>]"
     echo "$0 mountimage -image <image> -host <host> [-physicalrdm] [-bin <binary-to-use>] [-job <job-name>]"
+    echo "$0 expireimages -app <appid/appname> [-bin <binary-to-use>] [-job <job-name>]"
     echo "$0 expiremounts -app <appid/appname> [-bin <binary-to-use>] [-job <job-name>]"
     echo "$0 deletejobhistory -job <job-name>"
     echo "$0 snap -app <appid/appname> [-policy <policyid>] [-job <job-name>] [-bin <binary-to-use>]"
     echo "$0 protect -app <appid/appname> [-slt <sltname|id>] [-slp <slpname|id>]"
+    echo "$0 unprotect -app <appid/appname>"
 }
 
 cmd=$1
@@ -50,7 +52,7 @@ fi
 
 case $cmd in 
 mountimage)
-    mountimage ; ret=$?
+    mountimage $image; ret=$?
     ;;
 
 unmountimage)
@@ -71,6 +73,30 @@ expiremounts)
         exit 1
     fi
     expiremounts
+    ;;
+
+expireimages)
+    if [ -z "$app" ]; then
+        echo "-app <appid/appname> not specified"
+        exit 1
+    fi
+    expireimages
+    ;;
+
+protect)
+    if [ -z "$app" ]; then
+        echo "-app <appid/appname> not specified"
+        exit 1
+    fi
+    protect 
+    ;;
+
+unprotect)
+    if [ -z "$app" ]; then
+        echo "-app <appid/appname> not specified"
+        exit 1
+    fi
+    unprotect 
     ;;
 
 deletejobhistory)
