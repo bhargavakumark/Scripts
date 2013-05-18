@@ -13,6 +13,7 @@ job=Job_bhargava
 app=
 deletejobhistory=0
 delete=0
+help=0
 
 function Usage
 {
@@ -27,15 +28,19 @@ function Usage
 
 cmd=$1
 shift
-if [ -z "$1" ]; then
+if [ -z "$cmd" ]; then
     Usage $*
     exit 1
 fi
 
 parseargs $*
 
-/act/postgresql/bin/psql actdb act -c "delete from jobdata where jobname='$job'"
+if [ $help -eq 1 -o "$cmd" == "-h" ]; then
+    Usage $*
+    exit 0
+fi
 
+/act/postgresql/bin/psql actdb act -c "delete from jobdata where jobname='$job'"
 #udsinfo lsbackup | grep Image_bhargava
 
 case $cmd in 
@@ -75,3 +80,4 @@ deletejobhistory)
 esac
 
 exit $ret
+
