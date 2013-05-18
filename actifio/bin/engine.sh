@@ -11,6 +11,9 @@ prdm=false
 bin=~/bhargava/udpengine.bhargava.01
 job=Job_bhargava
 app=
+slt=
+slp=
+policy=
 deletejobhistory=0
 delete=0
 help=0
@@ -24,6 +27,8 @@ function Usage
     echo "$0 mountimage -image <image> -host <host> [-physicalrdm] [-bin <binary-to-use>] [-job <job-name>]"
     echo "$0 expiremounts -app <appid/appname> [-bin <binary-to-use>] [-job <job-name>]"
     echo "$0 deletejobhistory -job <job-name>"
+    echo "$0 snap -app <appid/appname> [-policy <policyid>] [-job <job-name>] [-bin <binary-to-use>]"
+    echo "$0 protect -app <appid/appname> [-slt <sltname|id>] [-slp <slpname|id>]"
 }
 
 cmd=$1
@@ -70,6 +75,10 @@ expiremounts)
 
 deletejobhistory)
     jobHistoryDelete $job
+    ;;
+
+snap)
+    snapjob $job
     ;;
 
 *)
