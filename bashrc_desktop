@@ -23,22 +23,6 @@ export MANPATH="$MANPATH:/home/bhargava/man:/home/bhargava/temp/etrack5.3/perl/m
 
 alias grep="grep --color"
 alias man="man -a"
-alias newtest="ssh root@mohenjo"
-alias test="ssh -X root@durga"
-alias linuxtest="ssh root@10.216.50.81"
-alias oldtest="ssh -X bhargava@mihir"
-alias pulsar="telnet pulsar.vxindia"
-alias suse="ssh -X bkancher@scmsuse9"
-alias megami="ssh -X bkancher@megami.veritas.com"
-alias cu="cvs update 2> /dev/null"
-alias c1="/home/bhargava/.c.1.sh"
-alias c2="/home/bhargava/.c.2.sh"
-alias c4="/home/bhargava/.c2.4.18.sh"
-alias c6="/home/bhargava/.c2.6.5.sh"
-alias rpc="/home/bhargava/.c.1.sh"
-alias vzportal="/home/bhargava/.vzportal.sh"
-alias svzportal="/home/bhargava/.svzportal.sh"
-alias movieserver="ssh -X everybody@dellaix.vxindia"
 alias ls='ls --color=tty'
 alias ll='ls -lh --color=tty'
 #alias firefox="/home/bhargava/software/firefox/firefox"
