@@ -14,15 +14,14 @@
 :ab #e <Space>****************************************/
 :ab #l /*-------------------------------------------- */
 :ab #j Jack Benny Show
-:set shiftwidth=8
-:set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab 
+:set tabstop=8 softtabstop=4 shiftwidth=4 noexpandtab 
 :set hlsearch
 :set number
 :set incsearch
-:nmap <F6> /}<CR>zf%<ESC>:nohlsearch<CR>
-:nmap <F5> zf%
-:nmap <F4> <ESC>:loadview<CR>
-:nmap <F3> <ESC>:mkview<CR>
+":nmap <F6> /}<CR>zf%<ESC>:nohlsearch<CR>
+":nmap <F5> zf%
+":nmap <F4> <ESC>:loadview<CR>
+":nmap <F3> <ESC>:mkview<CR>
 ":map <F9> :!make <CR>
 :command -nargs=* Make make <args> | cwindow 5
 ":map <F9> :w<CR>:Make %< <CR> <CR>
@@ -39,12 +38,12 @@
 :set ruler
 ":set mouse=a
 :set laststatus=2
-:imap <silent> ,, <ESC>"_yiw:s/\(\%#\w\+\)/<\1> <\/\1>/<cr><c-o><c-l>f>a
+":imap <silent> ,, <ESC>"_yiw:s/\(\%#\w\+\)/<\1> <\/\1>/<cr><c-o><c-l>f>a
 
-:nmap ll :cl<CR>
-:nmap l; :cn<CR>
-:nmap lk :cp<CR>
-:nmap <F2> :'<,'>s/^/\/\/ /g<CR>
+":nmap ll :cl<CR>
+":nmap l; :cn<CR>
+":nmap lk :cp<CR>
+":nmap <F2> :'<,'>s/^/\/\/ /g<CR>
 
 :function FoldComments()
 ":set foldmarker=/*,*/
@@ -107,7 +106,7 @@
 ":    system(" diff.sh" . line)
 :endfun
 ":nmap <buffer> <CR> :call DiffFile()  <CR><CR>
-:nmap <F12> <ESC>:qa<CR>
+":nmap <F12> <ESC>:qa<CR>
 
 :function ShowFunc()
 :    let gf_s = &grepformat
@@ -191,6 +190,8 @@
 :iabbrev ouput output
 :iabbrev prinft printf
 :iabbrev evn env
+:iabbrev gruop group
+:iabbrev updrestore udprestore
 
 function! Mosh_FocusLost_SaveFiles() 
     :exe ":au FocusLost" expand("%") ":wa" 
@@ -219,11 +220,13 @@ set nocp
 " OmniCppComplete
 "set nocp
 "filetype plugin on
+au BufNewFile,BufRead,BufEnter *.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
 if version >= 700
    if has('insert_expand')
       let OmniCpp_NamespaceSearch   = 1
       let OmniCpp_GlobalScopeSearch = 1
       let OmniCpp_ShowAccess        = 1
+      let OmniCpp_ShowPrototypeInAbbr = 1
       let OmniCpp_MayCompleteDot    = 1
       let OmniCpp_MayCompleteArrow  = 1
       let OmniCpp_MayCompleteScope  = 1
@@ -232,7 +235,7 @@ if version >= 700
       if has('autocmd')
          " Automatically open/close the preview window.
          au CursorMovedI,InsertLeave * if pumvisible() == 0 | sil! pclose | endif
-         set completeopt=menuone,longest,preview
+         set completeopt=menuone,menu,longest,preview
       endif
   endif
 endif
@@ -254,4 +257,34 @@ if has("cscope")
 	set csverb
 endif
 
-set tags=tags;~
+set tags=tags;/
+set tags+=~/.vim/tags/cpp_src
+helptags ~/.vim/doc 
+
+set foldmethod=indent   "fold based on indent
+set foldnestmax=10      "deepest fold is 10 levels
+set nofoldenable        "dont fold by default
+set foldlevel=1         "this is just what i use
+
+au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
+
+"disable using of 8 spaces as tab
+:set expandtab
+
+"load pathogen
+execute pathogen#infect()
+
+"open nerdtree (NERDTree) by default on start of vim
+"autocmd vimenter * NERDTree
+"autocmd VimEnter * wincmd p
+:nmap <F4> :NERDTreeTabsToggle<CR>
+:nmap <S-Space> <C-B>
+:nmap <Space> <C-F>
+":NERDTreeTabsToggle
+"set NERDTreeWinPos="right"
+syntax keyword Type     std::string 
+
+" natural split opening http://robots.thoughtbot.com/post/48275867281/vim-splits-move-faster-and-more-naturally
+set splitbelow
+set splitright
+
