@@ -10,6 +10,7 @@ host=sles11sp2-01
 prdm=false
 bin=/act/bin/udprestore.bhargava.01
 job=Job_bhargava
+app=
 
 function Usage
 {
@@ -36,6 +37,14 @@ mountimage)
 
 unmountimage)
     unmountimage ; ret=$?
+    ;;
+
+expiremounts)
+    if [ -z "$app" ]; then
+        echo "-app <appid/appname> not specified"
+        exit 1
+    fi
+    expiremounts
     ;;
 
 *)
