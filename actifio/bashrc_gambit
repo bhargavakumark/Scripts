@@ -12,4 +12,4 @@ export PATH=$PATH:~/bhargava/bin
 export TMOUT="0"
 unset TMOUT
 
-
+export CSHEDIT="vim"
