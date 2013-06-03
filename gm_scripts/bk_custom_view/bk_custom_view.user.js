@@ -41,6 +41,7 @@
 // @include        http://www.fark.com/*
 // @include        http://portal.beamtele.com/*
 // @include        http://portal.beamtele.com/#
+// @include        http://bug.actifio.com/*
 // ==/UserScript==
 
 function bk_setHint(node, hintstr)
@@ -502,5 +503,14 @@ if (window.location.hostname == "www.fark.com") {
 
 if(window.location.hostname == "portal.beamtele.com") {
 	document.getElementById('url_username').value = 'bhargavakumark@yahoo.com';
+}
+
+if(window.location.hostname == "bug.actifio.com") {
+	document.getElementById('Bugzilla_restrictlogin').checked = '';
+	$(document).ready(function(){
+                if( document.getElementById('Bugzilla_password').value != "") {
+                        document.getElementById('log_in').click();
+                }
+	});
 }
 
