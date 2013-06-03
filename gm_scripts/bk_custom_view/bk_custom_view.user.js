@@ -2,6 +2,7 @@
 // @name           bk_custom_view
 // @namespace      InYahooCom
 // @description    bk_custom_view
+// @grant          none
 // @require        http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.js
 // @include        http://in.yahoo.com/*
 // @include        http://indianexpress.com/news/*
