@@ -9,14 +9,10 @@ fi
 
 [ -f /etc/bash_completion ] && . /etc/bash_completion
 
+. $HOME/github/scripts/bashrc_common
+
 export PS1="\[\033[1;31m\][\u@\h:\w]$\[\033[0m\] "
 
-export CSCOPE_EDITOR="vim"
-export EDITOR="vim"
-export MANPATH="$MANPATH:/home/bhargava/man:/home/bhargava/temp/etrack5.3/perl/man"
-
-alias grep="grep --color"
-alias man="man -a"
 alias ls='ls -G'
 alias ll='ls -lh -G'
 
@@ -24,14 +20,12 @@ alias ll='ls -lh -G'
 # for line no, and show content for 80 columns
 alias xterm='xterm -fg white -bg black -geometry 84x24'
 
-# avoid having consecutive duplicate commands and other not so useful 
-# information appended to the history list
-export HISTIGNORE="&:ls:mutt:[bf]g:exit" 
+alias m="mplayer -vo corevideo -hardframedrop"
 
-alias m="mplayer -vo gl -hardframedrop"
-
-alias rdesktop="rdesktop -g 1152x864"
-alias vncstart="x11vnc -xkb -safer -nopw -once -display :0"
 ulimit -c unlimited
-alias jandboxthree="ssh -X bkancherla@jandboxthree.actifio.com"
 alias vm="ssh -X bhargava@vm"
+
+alias dbusstart="launchctl load -w /Library/LaunchAgents/org.freedesktop.dbus-session.plist"
+
+alias linux="ssh -X 1.1.1.2"
+
