@@ -14,7 +14,13 @@
 :ab #e <Space>****************************************/
 :ab #l /*-------------------------------------------- */
 :ab #j Jack Benny Show
+
+"Below for \t tab alignments
+":set shiftwidth=8
+":set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab 
+"Below for 4 space tab aligments
 :set tabstop=8 softtabstop=4 shiftwidth=4 noexpandtab 
+
 :set hlsearch
 :set number
 :set incsearch
@@ -288,3 +294,14 @@ syntax keyword Type     std::string
 set splitbelow
 set splitright
 
+" autoload cscope connections
+"function! LoadCscope()
+"  let db = findfile("cscope.out", ".;")
+"  if (!empty(db))
+"    let path = strpart(db, 0, match(db, "/cscope.out$"))
+"    set nocscopeverbose " suppress 'duplicate connection' error
+"    exe "cs add " . db . " " . path
+"    set cscopeverbose
+"  endif
+"endfunction
+"au BufEnter /* call LoadCscope()

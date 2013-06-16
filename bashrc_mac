@@ -3,10 +3,10 @@
 # User specific aliases and functions
 
 # Source global definitions
-if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
-fi
-
+#if [ -f /etc/bashrc ]; then
+#	. /etc/bashrc
+#fi
+#
 [ -f /etc/bash_completion ] && . /etc/bash_completion
 
 . $HOME/github/scripts/bashrc_common
@@ -28,4 +28,11 @@ alias vm="ssh -X bhargava@vm"
 alias dbusstart="launchctl load -w /Library/LaunchAgents/org.freedesktop.dbus-session.plist"
 
 alias linux="ssh -X 1.1.1.2"
+
+alias apache_start="sudo /opt/local/apache2/bin/apachectl start"
+alias apache_stop="sudo /opt/local/apache2/bin/apachectl stop"
+
+#export LANG=en_IN
+#export LANGUAGE=en_IN:en
+unset LC_TYPE
 
