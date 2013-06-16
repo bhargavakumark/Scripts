@@ -4,6 +4,8 @@
 [ -f /etc/bash.rc.sav ] && . /etc/bash.rc.sav
 [ -f ~/.bash_profile ] && . ~/.bash_profile
 [ -f ~/.bashrc ] && . ~/.bashrc
+[ -f ~/bhargava/bin/bash_completion ] && . ~/bhargava/bin/bash_completion
+
 
 alias xmlformat="xmllint --format --recover"
 alias vim="vim -u ~/bhargava/.vimrc"
@@ -11,5 +13,8 @@ alias grep='grep --color'
 export PATH=$PATH:~/bhargava/bin
 export TMOUT="0"
 unset TMOUT
-
-export CSHEDIT="vim"
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/act/lib64
+export CSHEDIT=vim
+export EDITOR=vim
+alias e=engine
+alias db="/act/postgresql/bin/psql actdb act -c "
