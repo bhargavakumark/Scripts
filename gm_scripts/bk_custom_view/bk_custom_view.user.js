@@ -12,7 +12,6 @@
 // @include        https://engtools.veritas.com/*
 // @include        https://engtools.engba.symantec.com/*
 // @include        https://plus.google.com*
-// @include        http://www.imdb.com/*
 // @include        https://www.irctc.co.in/*
 // @include        https://hrprod.ges.symantec.com/*
 // @include        https://www.hrworkwaysindia.com/*
@@ -45,6 +44,7 @@
 // @include        http://bug.actifio.com/*
 // @include        https://www.billdesk.com/APCPDCL/apcpdcl.htm*
 // @include        https://www.billdesk.com/pgidsk/pgijsp/apcpdcl*
+// @include        https://portal1.bsnl.in/aspxfiles/*
 // ==/UserScript==
 
 function bk_setHint(node, hintstr)
@@ -132,16 +132,6 @@ if(window.location.hostname == "plus.google.com") {
 	$(document).ready(function() {
 		$('.hba xV').remove();
 	});
-}
-
-if(window.location.hostname == "www.imdb.com") {
-	$('.aux-content-widget-2').remove();
-	$('.bottom-rhs').remove();
-	$('.rec_heading_wrapper').remove();
-	$('.rightcornerlink').remove();
-	$('#title_recs').remove();
-	$('#maindetails_sidebar_top').remove();
-	$('#maindetails_sidebar_bottom').remove();
 }
 
 if(window.location.hostname == "www.irctc.co.in") {
@@ -511,35 +501,44 @@ if (window.location.hostname == "portal.beamtele.com") {
 if (window.location.hostname == "bug.actifio.com") {
 	document.getElementById('Bugzilla_restrictlogin').checked = '';
 	$(document).ready(function(){
-                if( document.getElementById('Bugzilla_password').value != "") {
-                        document.getElementById('log_in').click();
-                }
+		if( document.getElementById('Bugzilla_password').value != "") {
+			document.getElementById('log_in').click();
+		}
 	});
 }
 
 if (window.location.hostname == "www.billdesk.com") {
-        if (window.location.pathname == "/APCPDCL/apcpdcl.htm") {
-	        $('.rtd').autocomplete = 'on';
-                document.getElementsByName('circle')[0].value = 'HYD';
-                // call onchange method
-                showERO(document.form1.circle.options[document.form1.circle.selectedIndex].value); 
-                document.getElementsByName('ero')[0].value = '4';
-                document.getElementsByName('payType')[0].checked = true;
-        }
-        if (window.location.pathname == "/pgidsk/pgijsp/apcpdcl_paydetails_current.jsp") {
+	if (window.location.pathname == "/APCPDCL/apcpdcl.htm") {
+		$('.rtd').autocomplete = 'on';
+		document.getElementsByName('circle')[0].value = 'HYD';
+		// call onchange method
+		showERO(document.form1.circle.options[document.form1.circle.selectedIndex].value); 
+		document.getElementsByName('ero')[0].value = '4';
+		document.getElementsByName('payType')[0].checked = true;
+	}
+	if (window.location.pathname == "/pgidsk/pgijsp/apcpdcl_paydetails_current.jsp") {
 		var node_list = document.getElementsByName('paymode');
-                for (var i = 0; i < node_list.length; i++) {
-                        if (node_list[i].value == "NETB" ) {
-                                node_list[i].checked = true;
-                                paymodeDisplay();
-                        }
-                }
+		for (var i = 0; i < node_list.length; i++) {
+			if (node_list[i].value == "NETB" ) {
+				node_list[i].checked = true;
+				paymodeDisplay();
+			}
+		}
 		var node_list = document.getElementsByName('txtBankID1');
-                for (var i = 0; i < node_list.length; i++) {
-                        if (node_list[i].value == "IDB" ) {
-                                node_list[i].checked = true;
-                        }
-                }
-        }
+		for (var i = 0; i < node_list.length; i++) {
+			if (node_list[i].value == "IDB" ) {
+				node_list[i].checked = true;
+			}
+		}
+	}
+}
+
+if (window.location.hostname == "portal1.bsnl.in") {
+	if (window.location.pathname == "/aspxfiles/instapay.aspx") {
+		document.getElementById('txtPhoneNumber').value = "040-27616353";
+		document.getElementById('txtUniqueId').value = "9000191186";
+		document.getElementById('txtMobile').value = "9989874545";
+		document.getElementById('txtEmailAddress').value = "bhargavakumark@gmail.com";
+	}
 }
 
