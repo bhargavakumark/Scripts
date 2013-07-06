@@ -20,15 +20,17 @@
 ":set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab 
 "Below for 4 space tab aligments
 :set tabstop=8 softtabstop=4 shiftwidth=4 noexpandtab 
+if has("autocmd")
+    " For java files use \t as separator
+    autocmd BufRead,BufNewFile *.java :set shiftwidth=8 tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab 
+    autocmd BufRead,BufNewFile *.js :set shiftwidth=8 tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab 
+endif
 
-:set hlsearch
-:set number
-:set incsearch
-":nmap <F6> /}<CR>zf%<ESC>:nohlsearch<CR>
-":nmap <F5> zf%
-":nmap <F4> <ESC>:loadview<CR>
-":nmap <F3> <ESC>:mkview<CR>
-":map <F9> :!make <CR>
+
+:set hlsearch   " highlight search
+:set number     " show line numbers - use :set nonumber to disable line numbers
+:set incsearch  " search as you type
+
 :command -nargs=* Make make <args> | cwindow 5
 ":map <F9> :w<CR>:Make %< <CR> <CR>
 :map <F9> :make %< <CR>
@@ -198,6 +200,9 @@
 :iabbrev evn env
 :iabbrev gruop group
 :iabbrev updrestore udprestore
+:iabbrev hcm hmc
+:iabbrev hcmHost hmcHost
+:iabbrev hcmLpar hmcLpar
 
 function! Mosh_FocusLost_SaveFiles() 
     :exe ":au FocusLost" expand("%") ":wa" 
@@ -227,6 +232,8 @@ set nocp
 "set nocp
 "filetype plugin on
 au BufNewFile,BufRead,BufEnter *.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
+au BufNewFile,BufRead,BufEnter *.java set omnifunc=javacomplete#Complete
+au BufNewFile,BufRead,BufEnter *.java set completefunc=javacomplete#CompleteParamsInfo
 if version >= 700
    if has('insert_expand')
       let OmniCpp_NamespaceSearch   = 1
@@ -250,7 +257,7 @@ set wildmode=longest,list
 set wildmenu
 
 if has("cscope")
-	set csto=0
+	set csto=1
 	set nocst
 	set nocsverb
 	" add any database in current directory
@@ -295,13 +302,17 @@ set splitbelow
 set splitright
 
 " autoload cscope connections
-"function! LoadCscope()
-"  let db = findfile("cscope.out", ".;")
-"  if (!empty(db))
-"    let path = strpart(db, 0, match(db, "/cscope.out$"))
-"    set nocscopeverbose " suppress 'duplicate connection' error
-"    exe "cs add " . db . " " . path
-"    set cscopeverbose
-"  endif
-"endfunction
-"au BufEnter /* call LoadCscope()
+function! LoadCscope()
+  let db = findfile("cscope.out", ".;")
+  if (!empty(db))
+    let path = strpart(db, 0, match(db, "/cscope.out$"))
+    set nocscopeverbose " suppress 'duplicate connection' error
+    exe "cs add " . db . " " . path
+    set cscopeverbose
+  endif
+endfunction
+au BufEnter /* call LoadCscope()
+
+" run below command to generate list of identifiers
+" for syntax highlighting using ctags
+" :UpdateTypesFile

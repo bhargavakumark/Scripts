@@ -58,7 +58,12 @@ done
 while :; do
 	index=`expr $RANDOM % $files_list_index`
 	! [ -f "${files_list[$index]}" ] && continue
+
+        # For gnome
 	gsettings set org.gnome.desktop.background picture-uri "file://${files_list[$index]}"
+
+        # For xfce
+        xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/image-path -s "${files_list[$index]}"
 #	gconftool-2 -s /desktop/gnome/background/picture_filename -t string "${files_list[$index]}"
 	mv /tmp/currentwall /tmp/currentwall.old
 	echo "${files_list[$index]}" > /tmp/currentwall
