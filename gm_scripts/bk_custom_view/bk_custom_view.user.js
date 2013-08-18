@@ -43,8 +43,10 @@
 // @include        http://portal.beamtele.com/#
 // @include        http://bug.actifio.com/*
 // @include        https://www.billdesk.com/APCPDCL/apcpdcl.htm*
+// @include        http://www.billdesk.com/APCPDCL/apcpdcl.htm*
 // @include        https://www.billdesk.com/pgidsk/pgijsp/apcpdcl*
 // @include        https://portal1.bsnl.in/aspxfiles/*
+// @include        https://www.axisbank.co.in/BankAway/*
 // ==/UserScript==
 
 function bk_setHint(node, hintstr)
@@ -540,5 +542,9 @@ if (window.location.hostname == "portal1.bsnl.in") {
 		document.getElementById('txtMobile').value = "9989874545";
 		document.getElementById('txtEmailAddress').value = "bhargavakumark@gmail.com";
 	}
+}
+
+if (window.location.hostname == "www.axisbank.co.in") {
+	document.getElementById('CorporateSignonPassword').autocomplete = 'on';
 }
 
