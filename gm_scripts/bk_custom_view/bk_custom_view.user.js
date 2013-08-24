@@ -8,7 +8,6 @@
 // @include        http://indianexpress.com/news/*
 // @include        http://www.expressindia.com/*
 // @include        http://www.indianexpress.com/news/*
-// @include        https://docs.google.com/*
 // @include        https://engtools.veritas.com/*
 // @include        https://engtools.engba.symantec.com/*
 // @include        https://plus.google.com*
@@ -76,12 +75,6 @@ if(window.location.hostname == "indianexpress.com" || window.location.hostname =
 
 if(window.location.hostname == "www.expressindia.com") {
 	$('.story_add').remove();
-}
-
-if(window.location.hostname == "docs.google.com") {
-	$(document).ready(function(){
-		$('#GDS_pageButter').remove();
-	});
 }
 
 if(window.location.hostname == "engtools.veritas.com" || window.location.hostname == "engtools.engba.symantec.com") {

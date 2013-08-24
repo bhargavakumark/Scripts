@@ -1,4 +1,10 @@
 :syntax on
+
+" YCM
+"filetype off
+"set rtp+=~/.vim/bundle/vundle/
+"call vundle#rc()
+
 :autocmd FileType * set formatoptions=tcql
 \ nocindent comments&
 :autocmd FileType c,cpp set formatoptions=croql
@@ -316,3 +322,9 @@ au BufEnter /* call LoadCscope()
 " run below command to generate list of identifiers
 " for syntax highlighting using ctags
 " :UpdateTypesFile
+
+" YouCompleteMe 
+"let g:ycm_confirm_extra_conf = 0
+
+" NeoComplete
+let g:neocomplete#enable_at_startup = 1
