@@ -8,26 +8,15 @@
 // @include        http://indianexpress.com/news/*
 // @include        http://www.expressindia.com/*
 // @include        http://www.indianexpress.com/news/*
-// @include        https://engtools.veritas.com/*
-// @include        https://engtools.engba.symantec.com/*
-// @include        https://plus.google.com*
 // @include        https://www.irctc.co.in/*
-// @include        https://hrprod.ges.symantec.com/*
 // @include        https://www.hrworkwaysindia.com/*
 // @include        https://hrworkwaysindia.com/*
 // @include        https://login.salesforce.com*
 // @include        https://mail.google.com/*
-// @include        https://ngsfdellpe-07.vxindia.veritas.com*
-// @include        https://nasgw1950-01-c.vxindia.veritas.com/*
-// @include        https://nasgw1950-02-c.vxindia.veritas.com/*
-// @include        https://ngsfdellpe-04-c.vxindia.veritas.com/*
-// @include        https://ngsfdellpe-07-c.vxindia.veritas.com/*
 // @include        http://www.indianrail.gov.in/*
 // @include        https://care.ideacellular.com/*
 // @include        http://www.divxsubtitles.net/*
-// @include        https://symresource.engba.symantec.com/*
 // @include        https://www.givingstation.com/*
-// @include        https://webmail-tus.symc.symantec.com/*
 // @include        https://ebpp.airtelworld.com/*
 // @include        http://www.rediff.com/*
 // @include        http://download.novell.com/*
@@ -75,58 +64,6 @@ if(window.location.hostname == "indianexpress.com" || window.location.hostname =
 
 if(window.location.hostname == "www.expressindia.com") {
 	$('.story_add').remove();
-}
-
-if(window.location.hostname == "engtools.veritas.com" || window.location.hostname == "engtools.engba.symantec.com") {
-	//document.getElementsByName('ET_state')[0].onchange = undefined;
-	//$('select[name="ET_state"]').removeAttr("onchange").bind("change", function(){ foo_2(); });
-	//$('select[name*="ET_state"]').hide();
-	if(window.location.pathname == "/Etrack/create_incident.php") {
-		document.getElementsByName('ET_description')[0].value = "";
-		document.getElementsByName('ET_user_defined_list2')[0].value = '';
-//		document.getElementsByName('ET_assigned_to')[0].value = 'bkancher';
-		document.getElementsByName('ET_target_version')[0].value = '6.0';
-		document.getElementsByName('ET_build')[0].value = 'NA';
-		document.getElementsByName('ET_assigned_to')[0].change();
-	}
-	if(window.location.pathname == "/Etrack/modify_incident.php") {
-		document.getElementsByName('propogate_comment')[0].checked = 'checked';
-	}
-	if(window.location.pathname == "/Etrack/bottom.php") {
-		$(document).ready(function(){
-			document.getElementsByName('rememberme')[0].checked = 'checked';
-			if( document.getElementsByName('password')[0].value != "") {
-				document.getElementsByName('submit2')[0].click();
-			}
-		});
-	}
-	if(window.location.pathname == "/Etrack/welcome.php") {
-		$(document).ready(function(){
-			var node_list = document.getElementsByTagName("TABLE");
-			node_list[6].parentNode.removeChild(node_list[6]);
-			// Once one element is removed, index moves up
-			node_list[6].parentNode.removeChild(node_list[6]);
-		});
-	}
-	if(window.location.pathname == "/toro/login.php" && !window.location.search.match("logout*")) {
-		$(document).ready(function(){
-//			alert ("here");
-			document.getElementsByName('login')[0].value = 'bhargava_kancharla';
-			document.getElementsByName('remember')[0].checked = 'checked';
-			document.getElementsByName('password')[0].focus();
-			if( document.getElementsByName('password')[0].value != "") {
-				alert ("here2");
-				document.getElementsByName('B1')[0].click();
-			} 
-		});
-	}
-}
-
-if(window.location.hostname == "plus.google.com") {
-	$('.a-j c-i-j-ua tg3b4c qQWXrb g2Lc3b dfrbjb').remove();
-	$(document).ready(function() {
-		$('.hba xV').remove();
-	});
 }
 
 if(window.location.hostname == "www.irctc.co.in") {
@@ -247,61 +184,10 @@ if(window.location.hostname == "www.irctc.co.in") {
 	}
 }
 
-if(window.location.hostname == "hrprod.ges.symantec.com") {
-	if (window.location.pathname == "/psp/hrp/" && window.location.search.match("cmd=login")) {
-		$(document).ready(function(){
-//			$('#userid').val("bhargava_kancharla").change();
-			document.getElementById('userid').value = "bhargava_kancharla";
-			bk_setHint(document.getElementById('pwd'), "enterrpise password");
-		});
-	}
-}
-
-if(window.location.hostname == "www.hrworkwaysindia.com") {
-	if (window.location.pathname == "/index.jsp") {
-//		$('#p1').val("0085612576").change();
-		document.getElementById('p1').value = "0085612576";
-		bk_setHint(document.getElementById('p2'), '"8');
-	}
-}
-
-if(window.location.hostname == "login.salesforce.com") {
-	document.getElementById('username').value = 'bhargava_kancharla@symantec.com';
-	document.getElementById('rememberUn').checked = 'checked';
-	bk_setHint(document.getElementById('password'), '"5');
-}
-
 if(window.location.hostname == "mail.google.com") {
 	$(document).ready(function(){
 		$('.mq').remove();
 	});
-}
-
-if(window.location.hostname == "ngsfdellpe-07.vxindia.veritas.com") {
-	if (window.location.pathname == '/ui/') {
-		$(document).ready(function() {
-			unsafeWindow.startPlatform();
-			var inputs = document.getElementsByTagName('input');
-			for(var i = 0; i < inputs.length; i++) {
-				if(inputs[i].getAttribute('type') == 'text') {
-					inputs[i].setAttribute('value') == 'root';
-				}
-			}
-		});
-//		document.getElementsByType('text')[0].value = "root";
-		$('input[type="text"]').val("root").change();
-	}
-}
-
-if(window.location.hostname == "nasgw1950-01-c.vxindia.veritas.com" ||
-   window.location.hostname == "ngsfdellpe-04-c.vxindia.veritas.com" ||
-   window.location.hostname == "ngsfdellpe-07-c.vxindia.veritas.com" ||
-   window.location.hostname == "nasgw1950-02-c.vxindia.veritas.com") {
-	if (window.location.pathname == '/cgi-bin/webcgi/login') {
-		document.getElementsByName('user')[0].value = "root";
-		document.getElementsByName('password')[0].value = "calvin";
-		window.location = "javascript:frmSubmit()";
-	}
 }
 
 function dummy() {
@@ -344,38 +230,6 @@ $(document).ready(function() {
 		}
 	}
 });
-}
-
-if(window.location.hostname == "symresource.engba.symantec.com") {
-	if (window.location.pathname == "/mainpage.php") {
-//		window.location = "https://" + window.location.hostname + "/index.php";
-//		window.location = "index.php";
-	}
-	if (window.location.pathname == "/index.php") {
-		$(document).ready(function(){
-			document.getElementsByName('UserName')[0].value = "bhargava_kancharla";
-			document.getElementsByName('UserPassword')[0].focus();
-			document.getElementsByName('UserPassword')[0].value = "";
-			bk_setHint(document.getElementsByName('UserPassword')[0], 'enterprise password');
-			document.getElementsByName('RememberLogin')[0].checked = 'checked';
-		});
-	}
-}
-
-if(window.location.hostname == "www.givingstation.com") {
-	if (window.location.pathname == "/login_/form_login.cfm") {
-		$(document).ready(function(){
-			document.getElementsByName('personloginid')[0].value = "bhargava_kancharla@symantec.com";
-			document.getElementsByName('personpwdid')[0].focus();
-			bk_setHint(document.getElementsByName('personpwdid')[0], '"9');
-		});
-	}
-}
-
-if (window.location.hostname == "webmail-tus.symc.symantec.com") {
-	if (window.location.search.match("a=New") || window.location.search.match("a=Reply")) { 
-		document.getElementsByName('txtbcc')[0].value = "bhargava_kancharla@symantec.com";
-	}
 }
 
 if (window.location.hostname == "ebpp.airtelworld.com") {
