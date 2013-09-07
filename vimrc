@@ -20,6 +20,9 @@
 :ab #e <Space>****************************************/
 :ab #l /*-------------------------------------------- */
 :ab #j Jack Benny Show
+:ab bbs bigbluesync.sh
+:ab jbs jandsync.sh
+:ab lbs localbuildsync.sh
 
 "Below for \t tab alignments
 ":set shiftwidth=8
@@ -209,6 +212,7 @@ endif
 :iabbrev hcm hmc
 :iabbrev hcmHost hmcHost
 :iabbrev hcmLpar hmcLpar
+:iabbrev iamge image
 
 function! Mosh_FocusLost_SaveFiles() 
     :exe ":au FocusLost" expand("%") ":wa" 
