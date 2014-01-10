@@ -345,6 +345,9 @@ if (window.location.hostname == "www.fark.com") {
 
 if (window.location.hostname == "portal.beamtele.com") {
 	document.getElementById('url_username').value = 'bhargavakumark@yahoo.com';
+	document.getElementById('url_userpassword').value = 'bhargava';
+	document.getElementById('url_remember').checked = 'checked';
+	process_login();
 }
 
 if (window.location.hostname == "bug.actifio.com") {
