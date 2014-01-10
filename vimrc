@@ -14,15 +14,12 @@
 "when smartindent is set, shell comments are always indented
 "to column 0
 :set autowrite
-:ab #d #define
-:ab #i #include
-:ab #b /****************************************
-:ab #e <Space>****************************************/
-:ab #l /*-------------------------------------------- */
-:ab #j Jack Benny Show
 :ab bbs bigbluesync.sh
 :ab jbs jandsync.sh
 :ab lbs localbuildsync.sh
+:ab wbs winsync.sh
+:ab sss sunsync.sh
+:ab t tabnew
 
 "Below for \t tab alignments
 ":set shiftwidth=8
@@ -213,6 +210,8 @@ endif
 :iabbrev hcmHost hmcHost
 :iabbrev hcmLpar hmcLpar
 :iabbrev iamge image
+:iabbrev virutal virtual
+:iabbrev strint string
 
 function! Mosh_FocusLost_SaveFiles() 
     :exe ":au FocusLost" expand("%") ":wa" 
@@ -290,6 +289,7 @@ set nofoldenable        "dont fold by default
 set foldlevel=1         "this is just what i use
 
 au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
+au FileType json setlocal equalprg=python\ -mjson.tool\ 2>/dev/null
 
 "disable using of 8 spaces as tab
 :set expandtab
