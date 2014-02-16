@@ -28,7 +28,7 @@
 :set tabstop=8 softtabstop=4 shiftwidth=4 noexpandtab 
 if has("autocmd")
     " For java files use \t as separator
-    autocmd BufRead,BufNewFile *.java :set shiftwidth=8 tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab 
+"    autocmd BufRead,BufNewFile *.java :set shiftwidth=8 tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab 
     autocmd BufRead,BufNewFile *.js :set shiftwidth=8 tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab 
 endif
 
