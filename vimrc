@@ -19,7 +19,6 @@
 :ab lbs localbuildsync.sh
 :ab wbs winsync.sh
 :ab sss sunsync.sh
-:ab t tabnew
 
 "Below for \t tab alignments
 ":set shiftwidth=8
