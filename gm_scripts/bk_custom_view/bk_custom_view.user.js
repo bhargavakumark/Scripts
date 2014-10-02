@@ -30,6 +30,9 @@
 // @include        http://portal.beamtele.com/*
 // @include        http://portal.beamtele.com/#
 // @include        http://bug.actifio.com/*
+// @include        https://bug.actifio.com/*
+// @include        http://shib.actifio.com/*
+// @include        https://shib.actifio.com/*
 // @include        https://www.billdesk.com/APCPDCL/apcpdcl.htm*
 // @include        http://www.billdesk.com/APCPDCL/apcpdcl.htm*
 // @include        https://www.billdesk.com/pgidsk/pgijsp/apcpdcl*
@@ -355,6 +358,28 @@ if (window.location.hostname == "bug.actifio.com") {
 	$(document).ready(function(){
 		if( document.getElementById('Bugzilla_password').value != "") {
 			document.getElementById('log_in').click();
+		}
+	});
+	$(document).ready(function(){
+		var node = document.getElementById('j_username');
+		if (node != null) {
+			var node2 = document.getElementById('j_password');
+			if (node.value != "" && node2.value != "") {
+				$('.form-element form-button').click();	//Element by class
+			}
+		}
+	});
+}
+
+if (window.location.hostname == "shib.actifio.com") {
+	$(document).ready(function(){
+		var node = document.getElementById('j_username');
+		if (node != null) {
+			var node2 = document.getElementById('j_password');
+			if (node.value != "" && node2.value != "") {
+				alert('submitting');
+				$('.form-element form-button').click();	//Element by class
+			}
 		}
 	});
 }
