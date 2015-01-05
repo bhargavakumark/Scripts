@@ -190,11 +190,12 @@ if (window.location.hostname == "www.fark.com") {
 if (window.location.hostname == "www.billdesk.com") {
 	if (window.location.pathname == "/APCPDCL/apcpdcl.htm") {
 		$('.rtd').autocomplete = 'on';
+		document.getElementsByName('sno')[0].autocomplete = "on";
 		document.getElementsByName('circle')[0].value = 'HYD';
 		// call onchange method
 		showERO(document.form1.circle.options[document.form1.circle.selectedIndex].value); 
 		document.getElementsByName('ero')[0].value = '4';
-		document.getElementsByName('payType')[0].checked = true;
+		document.getElementsByName('sno')[0].focus();
 	}
 	if (window.location.pathname == "/pgidsk/pgijsp/apcpdcl_paydetails_current.jsp") {
 		var node_list = document.getElementsByName('paymode');
@@ -210,6 +211,7 @@ if (window.location.hostname == "www.billdesk.com") {
 				node_list[i].checked = true;
 			}
 		}
+		document.getElementsByName('button2')[0].focus();
 	}
 }
 
