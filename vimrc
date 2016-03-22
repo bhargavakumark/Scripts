@@ -5,10 +5,10 @@
 "set rtp+=~/.vim/bundle/vundle/
 "call vundle#rc()
 
-:autocmd FileType * set formatoptions=tcql
-\ nocindent comments&
-:autocmd FileType c,cpp set formatoptions=croql
-\ cindent comments=sr:/*,mb:*,ex:*/,://
+":autocmd FileType * set formatoptions=tcql
+"\ nocindent comments&
+":autocmd FileType c,cpp set formatoptions=croql
+"\ cindent comments=sr:/*,mb:*,ex:*/,://
 :set autoindent
 ":set smartindent
 "when smartindent is set, shell comments are always indented
@@ -17,6 +17,7 @@
 :ab bbs bigbluesync.sh
 :ab jbs jandsync.sh
 :ab lbs localbuildsync.sh
+:ab lcbs localbuildconnsync.sh
 :ab wbs winsync.sh
 :ab sss sunsync.sh
 
@@ -28,7 +29,10 @@
 if has("autocmd")
     " For java files use \t as separator
 "    autocmd BufRead,BufNewFile *.java :set shiftwidth=8 tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab 
-    autocmd BufRead,BufNewFile *.js :set shiftwidth=8 tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab 
+    autocmd BufRead,BufNewFile *.js :set tabstop=8 softtabstop=4 shiftwidth=4 noexpandtab 
+    autocmd BufRead,BufNewFile *.html :set tabstop=8 softtabstop=4 shiftwidth=4 noexpandtab 
+    autocmd BufRead,BufNewFile /home/bhargava/github/kodi/* :set tabstop=8 softtabstop=2 shiftwidth=2 noexpandtab
+    autocmd BufRead,BufNewFile /home/bhargava/bitbucket/useless-pvr/* :set tabstop=8 softtabstop=2 shiftwidth=2 noexpandtab
 endif
 
 
@@ -211,6 +215,8 @@ endif
 :iabbrev iamge image
 :iabbrev virutal virtual
 :iabbrev strint string
+:iabbrev startttime starttime
+:iabbrev endttime endtime
 
 function! Mosh_FocusLost_SaveFiles() 
     :exe ":au FocusLost" expand("%") ":wa" 
@@ -223,9 +229,8 @@ au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|
 
 :set smartcase
 
-set tags=tags
 filetype on
-filetype plugin on
+filetype plugin indent on
 set nocp
 "autocmd FileType python set omnifunc=pythoncomplete#Complete
 "autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
@@ -238,10 +243,7 @@ set nocp
 
 " OmniCppComplete
 "set nocp
-"filetype plugin on
 au BufNewFile,BufRead,BufEnter *.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
-au BufNewFile,BufRead,BufEnter *.java set omnifunc=javacomplete#Complete
-au BufNewFile,BufRead,BufEnter *.java set completefunc=javacomplete#CompleteParamsInfo
 if version >= 700
    if has('insert_expand')
       let OmniCpp_NamespaceSearch   = 1
@@ -331,3 +333,32 @@ au BufEnter /* call LoadCscope()
 
 " NeoComplete
 let g:neocomplete#enable_at_startup = 1
+
+" eclim
+"let g:EclimCompletionMethod = 'omnifunc'
+
+" JavaImp.vim
+let g:JavaImpPaths = "/home/bhargava/android/android-sdk-linux/sources/android-22,/home/bhargava/bitbucket/useless-tvapp/app/src/main/java"
+let g:JavaImpDataDir = $HOME . "/.vim/JavaImp" 
+
+" javacomplete plugin
+" http://vim.sourceforge.net/scripts/script.php?script_id=1785
+" FIXME: disabling complete for java, not working
+"autocmd FileType java setlocal omnifunc=javacomplete#Complete
+:inoremap <buffer> <C-X><C-U> <C-X><C-U><C-P>
+:inoremap <buffer> <C-S-Space> <C-X><C-U><C-P>
+" To enable inserting class imports with F4, add:
+nmap <F5> <Plug>(JavaComplete-Imports-Add)
+imap <F5> <Plug>(JavaComplete-Imports-Add)
+" To add all missing imports with F5:
+nmap <F6> <Plug>(JavaComplete-Imports-AddMissing)
+imap <F6> <Plug>(JavaComplete-Imports-AddMissing)
+" To remove all missing imports with F6:
+nmap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
+imap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
+let g:JavaComplete_SourcesPath = "/home/bhargava/android/android-sdk-linux/sources/android-22"
+let g:JavaComplete_LibsPath = "/home/bhargava/android/android-sdk-linux/platforms/android-22"
+let g:JavaComplete_JavaviDebug = "1"
+
+" vim-javascript-syntax
+au FileType javascript call JavaScriptFold()
