@@ -1,5 +1,5 @@
 #!/bin/bash
-. /home/bhargava/nasgw/src/common/scripts/supportfn.sh
+#. /home/bhargava/symc/nasgw/src/common/scripts/supportfn.sh
 
 DEFAULT_INTERVAL=5
 
@@ -65,6 +65,10 @@ while :; do
         # For xfce
         xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/image-path -s "${files_list[$index]}"
         xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorVBOX0/workspace0/last-image -s "${files_list[$index]}"
+        xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorLVDS-0/workspace0/last-image -s "${files_list[$index]}"
+        xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorDP-3/workspace0/last-image -s "${files_list[$index]}"
+        xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorDP-0/workspace0/last-image -s "${files_list[$index]}"
+        xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitoreDP1/workspace0/last-image -s "${files_list[$index]}"
 #	gconftool-2 -s /desktop/gnome/background/picture_filename -t string "${files_list[$index]}"
 	mv /tmp/currentwall /tmp/currentwall.old
 	echo "${files_list[$index]}" > /tmp/currentwall
