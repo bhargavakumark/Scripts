@@ -69,6 +69,7 @@ while :; do
         xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorDP-3/workspace0/last-image -s "${files_list[$index]}"
         xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorDP-0/workspace0/last-image -s "${files_list[$index]}"
         xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitoreDP1/workspace0/last-image -s "${files_list[$index]}"
+        xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/last-image -s "${files_list[$index]}"
 #	gconftool-2 -s /desktop/gnome/background/picture_filename -t string "${files_list[$index]}"
 	mv /tmp/currentwall /tmp/currentwall.old
 	echo "${files_list[$index]}" > /tmp/currentwall
