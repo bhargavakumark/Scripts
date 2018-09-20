@@ -9,7 +9,7 @@
 #
 [ -f /etc/bash_completion ] && . /etc/bash_completion
 
-. $HOME/github/scripts/bashrc_common
+. $HOME/.bashrc_common
 
 export PS1="\[\033[1;31m\][\u@\h:\w]$\[\033[0m\] "
 
