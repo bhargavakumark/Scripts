@@ -7,13 +7,16 @@ use MIME::Base64;
 use IO::Socket::SSL qw( SSL_VERIFY_NONE );
 $ENV{PERL_LWP_SSL_VERIFY_HOSTNAME}=0;
 
-my $username = 'root';
-my $password = '12!pass345';
+my $username = 'admin';
+#my $username = 'root';
+my $password = 'password';
+#my $password = '12!pass345';
 my $headers = {Accept => 'application/json', Authorization => 'Basic ' . encode_base64($username . ':' . $password), Content-type => 'application/json'};
 my $host = REST::Client->new();
 $host->getUseragent()->ssl_opts( SSL_verify_mode => 0 );
 #$host->setHost('https://192.168.29.22:8080');
-$host->setHost('https://172.16.250.2:8080');
+#$host->setHost('https://172.16.250.2:8080');
+$host->setHost('https://172.24.1.210:8080');
 #$host->GET('/platform/1/protocols/nfs/exports?describe',$headers);
 
 sub getNFSExports
@@ -268,7 +271,7 @@ sub setExpiry
 #printCIFSExports $exports_ref;
 #createNFSExport $host, '/ifs/bhargava/.snapshot/snap1',  { 'ro' => 'true' }, { 'root_clients' => [ '192.168.29.14' ], { 'force' => 'true' } };
 #deleteCIFSExport $host, 'test';
-createCIFSExport $host, '/ifs/bhargava.cifs',  { 'ro' => 'true' }, { 'root_clients' => [ '192.168.29.14' ], { 'force' => 'true' } };
+createCIFSExport $host, '/ifs/.snapshot/ACTSNAP_22668608_22691742_1453433471780/cifs/sm',  { 'ro' => 'true' }, { 'root_clients' => [ '192.168.29.14' ], { 'force' => 'true' } };
 #$exports_ref = getCIFSExports $host;
 #printCIFSExports $exports_ref;
 #deleteNFSExport $host, '/ifs/bhargava/.snapshot/snap1/a', { 'root_clients' => [ '192.168.29.14' ] };
