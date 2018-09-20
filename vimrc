@@ -4,6 +4,14 @@
 "filetype off
 "set rtp+=~/.vim/bundle/vundle/
 "call vundle#rc()
+set rtp+=~/.vim/bundle/vundle/
+call vundle#begin()
+
+Plugin 'Shougo/neocomplete'
+Plugin 'Shougo/neosnippet'
+Plugin 'Shougo/neosnippet-snippets'
+
+call vundle#end()            " required
 
 ":autocmd FileType * set formatoptions=tcql
 "\ nocindent comments&
@@ -29,8 +37,10 @@
 if has("autocmd")
     " For java files use \t as separator
 "    autocmd BufRead,BufNewFile *.java :set shiftwidth=8 tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab 
-    autocmd BufRead,BufNewFile *.js :set tabstop=8 softtabstop=4 shiftwidth=4 noexpandtab 
-    autocmd BufRead,BufNewFile *.html :set tabstop=8 softtabstop=4 shiftwidth=4 noexpandtab 
+    autocmd BufRead,BufNewFile *.js :set tabstop=8 softtabstop=4 shiftwidth=4
+    autocmd BufRead,BufNewFile *.ts :set tabstop=8 softtabstop=4 shiftwidth=4
+    autocmd BufRead,BufNewFile *.html :set tabstop=8 softtabstop=4 shiftwidth=4
+    autocmd BufRead,BufNewFile *.go :set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab 
     autocmd BufRead,BufNewFile /home/bhargava/github/kodi/* :set tabstop=8 softtabstop=2 shiftwidth=2 noexpandtab
     autocmd BufRead,BufNewFile /home/bhargava/bitbucket/useless-pvr/* :set tabstop=8 softtabstop=2 shiftwidth=2 noexpandtab
 endif
@@ -217,6 +227,9 @@ endif
 :iabbrev strint string
 :iabbrev startttime starttime
 :iabbrev endttime endtime
+:iabbrev socpe scope
+:iabbrev theri their
+:iabbrev remoivng removing
 
 function! Mosh_FocusLost_SaveFiles() 
     :exe ":au FocusLost" expand("%") ":wa" 
@@ -284,12 +297,14 @@ set tags=tags;/
 set tags+=~/.vim/tags/cpp_src
 helptags ~/.vim/doc 
 
+"set ic                  "ignorecase comparison
+
 set foldmethod=indent   "fold based on indent
 set foldnestmax=10      "deepest fold is 10 levels
 set nofoldenable        "dont fold by default
 set foldlevel=1         "this is just what i use
 
-au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
+"au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
 au FileType json setlocal equalprg=python\ -mjson.tool\ 2>/dev/null
 
 "disable using of 8 spaces as tab
@@ -362,3 +377,8 @@ let g:JavaComplete_JavaviDebug = "1"
 
 " vim-javascript-syntax
 au FileType javascript call JavaScriptFold()
+
+" https://github.com/leafgarland/typescript-vim
+" vim typescript
+let g:typescript_indent_disable = 1
+
