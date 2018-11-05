@@ -14,7 +14,7 @@ function searchAll()
 {
     wget -q -O - http://www.zingoy.com/gift-cards/$1 > /tmp/$1
     if [ $? -eq 0 ]; then
-        grep 'It seems there are no giftcards available' /tmp/$1 > /dev/null
+        grep -E 'It seems there are no giftcards available|running out of stock' /tmp/$1 > /dev/null
         if [ $? -ne 0 ]; then
             alertmac "Found giftcards of $1"
             exit 0
