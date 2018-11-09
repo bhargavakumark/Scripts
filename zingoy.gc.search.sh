@@ -16,7 +16,7 @@ function searchAll()
     if [ $? -eq 0 ]; then
         grep -E 'It seems there are no giftcards available|running out of stock' /tmp/$1 > /dev/null
         if [ $? -ne 0 ]; then
-            /root/node/node-v5.6.0-linux-x64/bin/node /root/scraper/notification.cmd.js custom 25722518 'Found giftcards of $1' 'Found giftcards of $1' "http://www.zingoy.com/gift-cards/$1"
+            /root/node/node-v5.6.0-linux-x64/bin/node /root/scraper/notification.cmd.js custom 25722518 "Found giftcards of $1" "Found giftcards of $1" "http://www.zingoy.com/gift-cards/$1"
             exit 0
         fi
     fi
@@ -33,7 +33,7 @@ function searchDiscount()
             let discount=value-price
             let perc=$discount*100/value
             if [ $perc -ge $2 ]; then
-                /root/node/node-v5.6.0-linux-x64/bin/node /root/scraper/notification.cmd.js custom 25722518 'Found giftcards of $1 at discount $2' 'Found giftcards of $1 at discount $2' "http://www.zingoy.com/gift-cards/$1"
+                /root/node/node-v5.6.0-linux-x64/bin/node /root/scraper/notification.cmd.js custom 25722518 "Found giftcards of $1 at discount $2" "Found giftcards of $1 at discount $2" "http://www.zingoy.com/gift-cards/$1"
                 exit 0
             fi
         done
