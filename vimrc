@@ -7,9 +7,10 @@
 set rtp+=~/.vim/bundle/vundle/
 call vundle#begin()
 
-Plugin 'Shougo/neocomplete'
-Plugin 'Shougo/neosnippet'
-Plugin 'Shougo/neosnippet-snippets'
+"Plugin 'Shougo/neocomplete'
+"Plugin 'Shougo/neosnippet'
+"Plugin 'Shougo/neosnippet-snippets'
+Plugin 'ycm-core/YouCompleteMe'
 
 call vundle#end()            " required
 
@@ -40,7 +41,7 @@ if has("autocmd")
     autocmd BufRead,BufNewFile *.js :set tabstop=8 softtabstop=4 shiftwidth=4
     autocmd BufRead,BufNewFile *.ts :set tabstop=8 softtabstop=4 shiftwidth=4
     autocmd BufRead,BufNewFile *.html :set tabstop=8 softtabstop=4 shiftwidth=4
-    autocmd BufRead,BufNewFile *.go :set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab 
+    autocmd BufRead,BufNewFile *.go :set tabstop=4 softtabstop=4 shiftwidth=4 expandtab 
     autocmd BufRead,BufNewFile /home/bhargava/github/kodi/* :set tabstop=8 softtabstop=2 shiftwidth=2 noexpandtab
     autocmd BufRead,BufNewFile /home/bhargava/bitbucket/useless-pvr/* :set tabstop=8 softtabstop=2 shiftwidth=2 noexpandtab
 endif
@@ -295,7 +296,7 @@ endif
 
 set tags=tags;/
 set tags+=~/.vim/tags/cpp_src
-helptags ~/.vim/doc 
+"helptags ~/.vim/doc 
 
 "set ic                  "ignorecase comparison
 
@@ -347,7 +348,7 @@ au BufEnter /* call LoadCscope()
 "let g:ycm_confirm_extra_conf = 0
 
 " NeoComplete
-let g:neocomplete#enable_at_startup = 1
+"let g:neocomplete#enable_at_startup = 1
 
 " eclim
 "let g:EclimCompletionMethod = 'omnifunc'
