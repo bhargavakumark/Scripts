@@ -4,19 +4,21 @@
 "filetype off
 "set rtp+=~/.vim/bundle/vundle/
 "call vundle#rc()
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim
+
 call vundle#begin()
-
-Plugin 'Shougo/neocomplete'
-Plugin 'Shougo/neosnippet'
-Plugin 'Shougo/neosnippet-snippets'
-
-call vundle#end()            " required
+"Plugin 'Shougo/neocomplete'
+"Plugin 'Shougo/neosnippet'
+"Plugin 'Shougo/neosnippet-snippets'
+Plugin 'ycm-core/YouCompleteMe'
+call vundle#end()
 
 ":autocmd FileType * set formatoptions=tcql
 "\ nocindent comments&
 ":autocmd FileType c,cpp set formatoptions=croql
 "\ cindent comments=sr:/*,mb:*,ex:*/,://
+
+
 :set autoindent
 ":set smartindent
 "when smartindent is set, shell comments are always indented
@@ -28,19 +30,21 @@ call vundle#end()            " required
 :ab lcbs localbuildconnsync.sh
 :ab wbs winsync.sh
 :ab sss sunsync.sh
+:ab UPDINFO UDPINFO
 
 "Below for \t tab alignments
 ":set shiftwidth=8
 ":set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab 
 "Below for 4 space tab aligments
-:set tabstop=8 softtabstop=4 shiftwidth=4 noexpandtab 
+:set tabstop=4 softtabstop=4 shiftwidth=4
+":set tabstop=8 softtabstop=4 shiftwidth=4 noexpandtab 
 if has("autocmd")
     " For java files use \t as separator
 "    autocmd BufRead,BufNewFile *.java :set shiftwidth=8 tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab 
     autocmd BufRead,BufNewFile *.js :set tabstop=8 softtabstop=4 shiftwidth=4
     autocmd BufRead,BufNewFile *.ts :set tabstop=8 softtabstop=4 shiftwidth=4
     autocmd BufRead,BufNewFile *.html :set tabstop=8 softtabstop=4 shiftwidth=4
-    autocmd BufRead,BufNewFile *.go :set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab 
+"    autocmd BufRead,BufNewFile *.go :set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab 
     autocmd BufRead,BufNewFile /home/bhargava/github/kodi/* :set tabstop=8 softtabstop=2 shiftwidth=2 noexpandtab
     autocmd BufRead,BufNewFile /home/bhargava/bitbucket/useless-pvr/* :set tabstop=8 softtabstop=2 shiftwidth=2 noexpandtab
 endif
@@ -230,6 +234,11 @@ endif
 :iabbrev socpe scope
 :iabbrev theri their
 :iabbrev remoivng removing
+:iabbrev oepn open
+:iabbrev mulit multi
+:iabbrev mulitregion multiregion
+:iabbrev uesd used
+:iabbrev flase false
 
 function! Mosh_FocusLost_SaveFiles() 
     :exe ":au FocusLost" expand("%") ":wa" 
@@ -252,6 +261,8 @@ set nocp
 "autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 "autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 "autocmd FileType c set omnifunc=ccomplete#Complete
+"autocmd FileType c set omnifunc=go#complete#Complete
+"autocmd FileType c set omnifunc=go#complete#GocodeComplete
 
 
 " OmniCppComplete
@@ -295,7 +306,7 @@ endif
 
 set tags=tags;/
 set tags+=~/.vim/tags/cpp_src
-helptags ~/.vim/doc 
+"helptags ~/.vim/doc 
 
 "set ic                  "ignorecase comparison
 
@@ -311,7 +322,7 @@ au FileType json setlocal equalprg=python\ -mjson.tool\ 2>/dev/null
 :set expandtab
 
 "load pathogen
-execute pathogen#infect()
+"execute pathogen#infect()
 
 "open nerdtree (NERDTree) by default on start of vim
 "autocmd vimenter * NERDTree
@@ -382,3 +393,25 @@ au FileType javascript call JavaScriptFold()
 " vim typescript
 let g:typescript_indent_disable = 1
 
+"You can use the 'formatoptions' option  to influence how Vim formats text.
+"'formatoptions' is a string that can contain any of the letters below.  The
+"default setting is "tcq".  You can separate the option letters with commas for
+"readability.
+
+"letter  meaning when present in 'formatoptions'
+"
+"t       Auto-wrap text using textwidth
+"c       Auto-wrap comments using textwidth, inserting the current comment
+"        leader automatically.
+"r       Automatically insert the current comment leader after hitting
+"        <Enter> in Insert mode.
+"o       Automatically insert the current comment leader after hitting 'o' or
+"        'O' in Normal mode.
+":autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
+:autocmd FileType c,h,cpp set formatoptions=tcq
+:set formatoptions=tcq
+
+":function XmlFormat()
+":%!xmllint --format %
+":endfunction
+:command XmlFormat %!xmllint --format %
