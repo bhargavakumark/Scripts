@@ -358,7 +358,7 @@ au BufEnter /* call LoadCscope()
 "let g:ycm_confirm_extra_conf = 0
 
 " NeoComplete
-let g:neocomplete#enable_at_startup = 1
+"let g:neocomplete#enable_at_startup = 1
 
 " eclim
 "let g:EclimCompletionMethod = 'omnifunc'
