@@ -1,0 +1,1051 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# User specific aliases and functions
+export PATH=$PATH:/root/node/node-v5.6.0-linux-x64/bin
+alias db='psql -h 127.0.0.1 -p 5432 -U postgres uselessdb -c '
+alias DB='psql -h 127.0.0.1 -p 5432 -U postgres uselessdb -tA -c '
+export db='psql -h 127.0.0.1 -p 5432 -U postgres uselessdb -c '
+export DB='psql -h 127.0.0.1 -p 5432 -U postgres uselessdb -tA -c '
+alias jsonformat='python -mjson.tool'
+export EDITOR="vim"
+export CSCOPE_EDITOR="vim"
+alias gti=git
+
+# actifio
+ssh_custom_bashrc="bash --rcfile /root/bhargava/init.sh -i"
+alias sles11sp2-21="ssh -l root 192.168.29.5 \"$ssh_custom_bashrc\""
+alias scp_pas='scp -P 26  -i ~/.ssh/bkancherla-v1-key -i ~/.ssh/bkancherla-v2-key  -o User=root'
+alias ssh_pas='ssh -l root -p 26  -i ~/.ssh/bkancherla-v1-key -i ~/.ssh/bkancherla-v2-key  -A'
+alias sky70-01="ssh  -i ~/.ssh/bkancherla-v1-key -i ~/.ssh/bkancherla-v2-key -l root -p 26 192.168.29.75 'bash --rcfile /dumps/bhargava/init.sh -i'"
+
+alias awsdigitalocean="aws --endpoint=https://sgp1.digitaloceanspaces.com --profile=digitalocean-images"
+
+export HISTSIZE=100000
+export HISTFILESIZE=100000
+
+export PATH=$PATH:/root/activator/activator-dist-1.3.10/bin
+export PATH=$PATH:/opt/ejabberd-16.04/bin
+
+export _JAVA_OPTIONS=-Duser.timezone=GMT
+
+alias gs="git status ."
+alias gc="git commit "
+alias gd="git diff "
+alias gerp="grep"
+
+function cprogToProg
+{
+    if [ -z "$1" ]; then
+	echo "cprogToProg <cprog-id>"
+	return;
+    fi
+    db "select * from program where id in (select programid from channelprogram where id=$1)"
+}
+
+function channelprogram
+{
+    if [ -z "$1" ]; then
+	echo "channelprogram <cprog-id>"
+	return;
+    fi
+    db "select * from channelprogram where id=$1"
+}
+
+function programByWhatson
+{
+    if [ -z "$1" ]; then
+	echo "programByWhatson <whatson-id>"
+	return;
+    fi
+    db "select * from program where whatsonid=$1"
+}
+
+function deleteByWhatson
+{
+    if [ -z "$1" ]; then
+	echo "deleteByWhatson <whatson-id>"
+	return;
+    fi
+    db "delete from program where whatsonid=$1"
+}
+
+function program
+{
+    if [ -z "$1" ]; then
+	echo "program <id|query>"
+	return;
+    fi
+    echo $1 | grep where > /dev/null
+    if [ $? -eq 0 ]; then
+	db "select * from program $1"
+    else
+	db "select * from program where id=$1"
+    fi
+}
+
+function people
+{
+    if [ -z "$1" ]; then
+	echo "people <id|query>"
+	return;
+    fi
+    echo $1 | grep where > /dev/null
+    if [ $? -eq 0 ]; then
+	db "select * from people $1"
+    else
+	db "select * from people where id=$1"
+    fi
+}
+
+function peoplebyprogram
+{
+    if [ -z "$1" ]; then
+	echo "peoplebyprogram <id|query>"
+	return;
+    fi
+    db "select id, realname, imdbid, themoviedbid, wikiid from people where id in (select peopleid from casting where programid=$1) order by realname"
+}
+
+function hotstarid
+{
+    if [ -z "$1" ]; then
+	echo "hotstarid <id>"
+	return;
+    fi
+    db "select * from program where hotstarcontid=$1 or hotstarid=$1"
+    id=$(DB "select id from program where hotstarcontid=$1 or hotstarid=$1")
+    ! [ -z "$id" ] && echo "http://localhost:8101/#/app/channelProgram//$id/All"
+}
+
+function zee5id
+{
+    if [ -z "$1" ]; then
+	echo "zee5id <id>"
+	return;
+    fi
+    db "select * from program where zee5id='$1'"
+    id=$(DB "select id from program where zee5id='$1'")
+    ! [ -z "$id" ] && echo "http://localhost:8101/#/app/channelProgram//$id/All"
+}
+
+function vootid
+{
+    if [ -z "$1" ]; then
+	echo "vootid <id>"
+	return;
+    fi
+    db "select * from program where vootid=$1"
+    id=$(DB "select id from program where vootid=$1")
+    ! [ -z "$id" ] && echo "http://localhost:8101/#/app/channelProgram//$id/All"
+}
+
+function channel
+{
+    if [ -z "$1" ]; then
+	db "select * from channel"
+	return;
+    fi
+    echo $1 | grep where > /dev/null
+    if [ $? -eq 0 ]; then
+	db "select * from channel $1"
+    else
+	db "select * from channel where id=$1"
+    fi
+}
+
+function channelprovider
+{
+    if [ -z "$1" ]; then
+	db "select * from channelprovider"
+	return;
+    fi
+    echo $1 | grep where > /dev/null
+    if [ $? -eq 0 ]; then
+	db "select * from channelprovider $1"
+    else
+	db "select * from channelprovider where id=$1"
+    fi
+}
+
+function tvchannel
+{
+    if [ -z "$1" ]; then
+	db "select * from tvchannel"
+	return;
+    fi
+    echo $1 | grep where > /dev/null
+    if [ $? -eq 0 ]; then
+	db "select * from tvchannel $1"
+    else
+	db "select * from tvchannel where id=$1"
+    fi
+}
+
+function setart
+{
+    if [ -z "$1" ]; then
+	echo "setart <id>"
+	return;
+    fi
+    settype $1 'Art/Culture'
+}
+
+function setfinance
+{
+    if [ -z "$1" ]; then
+	echo "setfinance <id>"
+	return;
+    fi
+    settype $1 'Finance'
+}
+
+function setpreview
+{
+    if [ -z "$1" ]; then
+	echo "setpreview <id>"
+	return;
+    fi
+    settype $1 'Preview'
+}
+
+function setnature
+{
+    if [ -z "$1" ]; then
+	echo "setnature <id>"
+	return;
+    fi
+    settype $1 'Nature'
+}
+
+function setspiritual
+{
+    if [ -z "$1" ]; then
+	echo "setspiritual <id>"
+	return;
+    fi
+    settype $1 'Spiritual'
+}
+
+function setevents
+{
+    if [ -z "$1" ]; then
+	echo "setevents <id>"
+	return;
+    fi
+    settype $1 'Events'
+}
+
+function setnews
+{
+    if [ -z "$1" ]; then
+	echo "setnews <id>"
+	return;
+    fi
+    settype $1 'News'
+}
+
+function sethealth
+{
+    if [ -z "$1" ]; then
+	echo "sethealth <id>"
+	return;
+    fi
+    settype $1 'Health'
+}
+
+function setauto
+{
+    if [ -z "$1" ]; then
+	echo "setauto <id>"
+	return;
+    fi
+    settype $1 'Auto'
+}
+
+function setmusic
+{
+    if [ -z "$1" ]; then
+	echo "setmusic <id>"
+	return;
+    fi
+    settype $1 'Music'
+}
+
+function renametv
+{
+    if [ -z "$1" -o -z "$2" ]; then
+	echo "renametv <mainprogramid> <newname>"
+	return
+    fi
+
+    set -x 
+    db "update program set mainprogramname='$2' where  mainprogramid=$1"
+    db "update program set name='$2' where  mainprogramid=$1"
+    db "update program set name='$2' where  id=$1"
+    set +x
+}
+
+function settype
+{
+    if [ -z "$1" ]; then
+	echo "settype <id> type"
+	return;
+    fi
+    $db "update program set type='$2' where id=$1 or mainprogramid=$1"
+    if [ "$2" != "TV-Series" -a "$2" != "Movie" ]; then
+	$db "update program set popularity=-1 where id=$1"
+    fi
+}
+
+function setgenre
+{
+    if [ -z "$1" ]; then
+	echo "setgenre <id> genre"
+	return;
+    fi
+    $db "update program set genre='$2' where id=$1 or mainprogramid=$1"
+}
+
+function settvseries
+{
+    if [ -z "$1" ]; then
+	echo "settvseries <id>"
+	return;
+    fi
+    settype $1 'TV-Series'
+}
+
+function setmovie
+{
+    if [ -z "$1" ]; then
+	echo "setmovie <id>"
+	return;
+    fi
+    settype $1 'Movie'
+}
+
+function setfashion
+{
+    if [ -z "$1" ]; then
+	echo "setfashion <id>"
+	return;
+    fi
+    settype $1 'Fashion'
+}
+
+function sethistory
+{
+    if [ -z "$1" ]; then
+	echo "sethistory <id>"
+	return;
+    fi
+    settype $1 'History'
+}
+
+function setchat
+{
+    if [ -z "$1" ]; then
+	echo "setshopping <id>"
+	return;
+    fi
+    settype $1 'Chat-Show'
+}
+
+function settechnology
+{
+    if [ -z "$1" ]; then
+	echo "settechnology <id>"
+	return;
+    fi
+    settype $1 'Technology'
+}
+
+function setshopping
+{
+    if [ -z "$1" ]; then
+	echo "setshopping <id>"
+	return;
+    fi
+    settype $1 'Shopping'
+}
+
+function setastrology
+{
+    if [ -z "$1" ]; then
+	echo "setastrology <id>"
+	return;
+    fi
+    settype $1 'Astrology'
+}
+
+function settravel
+{
+    if [ -z "$1" ]; then
+	echo "settravel <id>"
+	return;
+    fi
+    settype $1 'Travel'
+}
+
+function setcomedy
+{
+    if [ -z "$1" ]; then
+	echo "setcomedy <id>"
+	return;
+    fi
+    settype $1 'Comedy'
+}
+
+function setfood
+{
+    if [ -z "$1" ]; then
+	echo "setfood <id>"
+	return;
+    fi
+    settype $1 'Food'
+}
+
+function setlifestyle
+{
+    if [ -z "$1" ]; then
+	echo "setlifestyle <id>"
+	return;
+    fi
+    settype $1 'Lifestyle'
+}
+
+function setsports
+{
+    if [ -z "$1" ]; then
+	echo "setsport <id>"
+	return;
+    fi
+    settype $1 'Sports'
+}
+
+function seteducation
+{
+    if [ -z "$1" ]; then
+	echo "seteducation <id>"
+	return;
+    fi
+    settype $1 'Education'
+}
+
+function setkids
+{
+    if [ -z "$1" ]; then
+	echo "setkids <id>"
+	return;
+    fi
+    settype $1 'Kids'
+}
+
+function setads
+{
+    if [ -z "$1" ]; then
+	echo "setads <id>"
+	return;
+    fi
+    setgenre $1 'ADS'
+}
+
+function tmdbid
+{
+    if [ -z "$1" ]; then
+	echo "tmdbid <id>"
+	return;
+    fi
+    db "select * from program where themoviedbid=$1"
+}
+
+function imdbid
+{
+    if [ -z "$1" ]; then
+	echo "imdbid <id>"
+	return;
+    fi
+    db "select * from program where imdbid='$1' and mainprogramid is null"
+}
+
+function wikiid
+{
+    if [ -z "$1" ]; then
+	echo "wikiid <id>"
+	return;
+    fi
+    db "select * from program where wikiid=$1"
+}
+
+function wikiname
+{
+    if [ -z "$1" ]; then
+	echo "wikiname <id>"
+	return;
+    fi
+    db "select * from program where wikiname='$1'"
+}
+
+function mainprogramid
+{
+    if [ -z "$1" ]; then
+	echo "mainprogramid <id>"
+	return;
+    fi
+    mainid=$(DB "select mainprogramid from program where id=$1")
+    [ -z "$mainid" ] && mainid=$1
+    [ ! -z "$mainid" -a $mainid -lt 0 ] && mainid=$1
+    echo $mainid
+}
+
+function deleteprog
+{
+    if [ -z "$1" ]; then
+	echo "deleteprog <id>"
+	return;
+    fi
+    $DB "delete from program where id=$1 and id not in (select programid from userfav)"
+}
+
+function deleteprogsources
+{
+    if [ -z "$1" ]; then
+	echo "deleteprogsource <id>"
+	return;
+    fi
+    $DB "delete from programsources where id=$1 or programid=$1"
+}
+
+function deletepeople
+{
+    if [ -z "$1" ]; then
+	echo "deletepeople <id>"
+	return;
+    fi
+    $DB "delete from people where id=$1"
+}
+
+function deletechannel
+{
+    if [ -z "$1" ]; then
+	echo "deletechannel <id>"
+	return;
+    fi
+    $DB "delete from channel where id=$1"
+}
+
+function mergepeople
+{
+    if [ -z "$1" -o -z "$2" ]; then
+	echo "mergepeople <newid> <dupid>"
+	return;
+    fi
+
+    if [ "$1" == "$2" ]; then
+	echo "mergepeople, old and new id are same"
+	return;
+    fi
+
+    local newid=$1
+    local oldid=$2
+
+    $db "update casting set peopleid=$newid where peopleid=$oldid"
+    $DB "select themoviedbid, imdbid, wikiid, wikiname, twitterid, freebaseid, freebasemid, facebookid, instagramid, googleplusid, postersmall, posterlarge, postermedium from people where id=$oldid" | 
+    while IFS='|' read tmdbid imdbid wikiid wikiname twitterid freebaseid freebasemid facebookid instagramid googleplusid postersmall posterlarge postermedium rest; do
+	echo $tmdbid $imdbid $wikiid $wikiname $twitterid $freebaseid $freebasemid $facebookid $instagramid $googleplusid $postersmall $posterlarge $postermedium
+	$db "delete from people where id=$oldid"
+	[ -z "$tmdbid" ] || $db "update people set themoviedbid=$tmdbid where id=$newid"
+	[ -z "$imdbid" ] || $db "update people set imdbid='$imdbid' where id=$newid"
+	[ -z "$wikiid" ] || $db "update people set wikiid='$wikiid' where id=$newid"
+	[ -z "$wikiname" ] || $db "update people set wikiname='$wikiname' where id=$newid"
+	[ -z "$twitterid" ] || $db "update people set twitterid='$twitterid' where id=$newid"
+	[ -z "$freebaseid" ] || $db "update people set freebaseid='$freebaseid' where id=$newid"
+	[ -z "$freebasemid" ] || $db "update people set freebasemid='$freebasemid' where id=$newid"
+	[ -z "$facebookid" ] || $db "update people set facebookid='$facebookid' where id=$newid"
+	[ -z "$instagramid" ] || $db "update people set instagramid='$instagramid' where id=$newid"
+	[ -z "$googleplusid" ] || $db "update people set googleplusid='$googleplusid' where id=$newid"
+	[ -z "$posterlarge" ] || $db "update people set posterlarge='$posterlarge' where id=$newid and posterlarge is null"
+	[ -z "$postersmall" ] || $db "update people set postersmall='$postersmall' where id=$newid and postersmall is null"
+	[ -z "$postermedium" ] || $db "update people set postermedium='$postermedium' where id=$newid and postermedium is null"
+    done
+}
+
+function mergetvseries
+{
+    newprog=$1
+    oldprog=$2
+    [ -z "$oldprog" -o -z "$newprog" ] && {
+	echo "mergetvseries <newprog> <oldprog>"
+	return 1
+    }
+    oldwhatsonid=$($DB "select whatsonid from program where id=$oldprog")
+    newwhatsonid=$($DB "select whatsonid from program where id=$newprog")
+    [ ! -z "$oldwhatsonid" -a ! -z "$newwhatsonid" ] && {
+	 $db "insert into whatsondups (id, oldid, newid) values (nextval('seqgenerator'), $oldwhatsonid, $newwhatsonid)"
+    }
+    [ -z "$newwhatsonid" -a ! -z "$oldwhatsonid" ] && {
+	$db "update program set whatsonid=$oldwhatsonid where id=$newprog"
+    }
+    $DB "select distinct(programid) from channelprogram where programid in (select id from program where mainprogramid=$oldprog)" |
+    while read id; do 
+	episodeno=$($DB "select episodeno from program where id=$id")
+	seasonno=$($DB "select seasonno from program where id=$id")
+	newid=$($DB "select id from program where episodeno=$episodeno and seasonno=$seasonno and mainprogramid=$newprog")
+	if [ -z "$newid" ]; then
+	    $DB "update program set mainprogramid=$newprog where id=$id"
+	else
+	    $DB "update channelprogram set programid=$newid where programid=$id"
+	fi
+    done
+    $DB "update channelprogram set programid=$newprog where programid=$oldprog"
+    $DB "delete from program where id=$oldprog"
+}
+
+function createnewepisode
+{
+    mainprogramid=$1
+    [ -z "$mainprogramid" ] && {
+	echo "createnewepisode <mainprogramid>"
+	return 1
+    }
+    seasonno=$($DB "Select max(seasonno) from program where mainprogramid=$mainprogramid")
+    [ -z "$seasonno" ] && seasonno="-1"
+    episodeno=$($DB "Select max(episodeno) from program where mainprogramid=$mainprogramid and seasonno=$seasonno")
+    [ -z "$episodeno" ] && episodeno="0"
+    let episodeno=$episodeno+1
+    node /root/scraper/whatson.cmd.js createepisodes $mainprogramid $episodeno $episodeno $seasonno
+}
+
+function setsummary
+{
+    mainprogramid=$1
+    [ -z "$mainprogramid" ] && {
+	echo "setsummary <programid> <summary>"
+	return 1
+    }
+    summary=$2
+    [ -z "$summary" ] && {
+	echo "setsummary <programid> <summary>"
+	return 1
+    }
+    summary=$(echo $summary | sed "s/'//g")
+    $DB "update program set summary='$summary' where id=$mainprogramid or mainprogramid=$mainprogramid"
+}
+
+function setignorenew
+{
+    mainprogramid=$1
+    [ -z "$mainprogramid" ] && {
+	echo "setignorenew <programid> true|false"
+	return 1
+    }
+    value=$2
+    [ -z "$value" ] && value='true'
+    $DB "update program set ignorenew='$value' where id=$mainprogramid"
+}
+alias addignorenew=setignorenew
+
+function restartpid
+{
+    pid=$1
+    [ -z "$pid" ] && {
+	echo "restartpid <pid>"
+	return 1
+    }
+
+    ps -ef -q $pid --no-headers | while read a b c d e f h binary cmd opt1 opt2 rest; do kill -9 $pid; $binary $cmd $opt1 $opt2 "$rest"; done
+}
+
+function addnotification
+{
+    cprog=$1
+    [ -z "$cprog" ] && {
+	echo "addnotification <cprog>"
+	return 1
+    }
+
+    ! [ -z "$2" ] && {
+	echo "addnotification <cprog>"
+	return 1
+    }
+
+    starttime=$($DB "select starttime from channelprogram where id=$cprog")
+    [ -z "$starttime" ] && {
+        echo "Failed to find cprog with id $cprog"
+        return 1
+    }
+    curid=$($DB "select id from notifications where channelprogramid=$cprog and userid is null")
+    ! [ -z "$curid" ] && {
+        echo "Notification for $curid already exists"
+        return 1
+    }
+    $DB "insert into notifications (id, channelprogramid, starttime) values (nextval('seqgenerator'), $cprog, '$starttime')"
+}
+
+function addignorespuul
+{
+    id=$1
+    [ -z "$id" ] && {
+	echo "addignorespuul <id>"
+	return 1
+    }
+
+    node ~/scraper/spuul.cmd.js getdetails $id > /dev/null || {
+	echo "Failed to find spuul program by id $id"
+	return 1
+    }
+
+    $DB "insert into ignorelist (id, spuulid) values (nextval('seqgenerator'), $id)"
+}
+
+function addignoreboxtv
+{
+    id=$1
+    [ -z "$id" ] && {
+	echo "addignoreboxtv <id>"
+	return 1
+    }
+
+    node ~/scraper/boxtv.cmd.js getdetails $id > /dev/null || {
+	echo "Failed to find boxtv program by id $id"
+	return 1
+    }
+
+    $DB "insert into ignorelist (id, boxtvid) values (nextval('seqgenerator'), $id)"
+}
+
+function addignorehotstar
+{
+    id=$1
+    [ -z "$id" ] && {
+	echo "addignorehotstar <id>"
+	return 1
+    }
+
+    node ~/scraper/hotstar.cmd.js getdetails $id > /dev/null || {
+	echo "Failed to find hotstar program by id $id"
+	return 1
+    }
+
+    $DB "insert into ignorelist (id, hotstarcontid) values (nextval('seqgenerator'), $id)"
+}
+
+function addignorevoot
+{
+    id=$1
+    [ -z "$id" ] && {
+	echo "addignorevoot <id>"
+	return 1
+    }
+
+    node ~/scraper/voot.cmd.js getdetails $id > /dev/null || {
+	echo "Failed to find voot program by id $id"
+	return 1
+    }
+
+    $DB "insert into ignorelist (id, vootid) values (nextval('seqgenerator'), $id)"
+}
+
+function addignoreeros
+{
+    id=$1
+    [ -z "$id" ] && {
+	echo "addignoreeros <id>"
+	return 1
+    }
+
+    node ~/scraper/eros.cmd.js getdetails $id > /dev/null || {
+	echo "Failed to find eros program by id $id"
+	return 1
+    }
+
+    $DB "insert into ignorelist (id, erosnowid) values (nextval('seqgenerator'), $id)"
+}
+
+function addignoresonyliv
+{
+    id=$1
+    [ -z "$id" ] && {
+	echo "addignoresonyliv <id>"
+	return 1
+    }
+
+    node ~/scraper/sonyliv.cmd.js getdetails $id > /dev/null || {
+	echo "Failed to find sonyliv program by id $id"
+	return 1
+    }
+
+    $DB "insert into ignorelist (id, sonyid) values (nextval('seqgenerator'), $id)"
+}
+
+function addignoresunnxt
+{
+    id=$1
+    [ -z "$id" ] && {
+	echo "addignoresunnxt <id>"
+	return 1
+    }
+
+    $DB "insert into ignorelist (id, sunnxtid) values (nextval('seqgenerator'), $id)"
+}
+
+function addignorezee5
+{
+    id=$1
+    [ -z "$id" ] && {
+	echo "addignorezee5 <id>"
+	return 1
+    }
+
+    $DB "insert into ignorelist (id, zee5id) values (nextval('seqgenerator'), '$id')"
+}
+
+function removethumbnail
+{
+    id=$1
+    [ -z "$id" ] && {
+	echo "removethumbnail <id>"
+	return 1
+    }
+
+    $DB "update program set thumbnail=null where mainprogramid=$id and thumbnail is not null and thumbnail=(select thumbnail from program where id=$id)"
+    $DB "update program set thumbnail=null where id=$id and thumbnail is not null"
+    $DB "update program set thumbnailw92=null where mainprogramid=$id and thumbnailw92 is not null and thumbnailw92=(select thumbnailw92 from program where id=$id)"
+    $DB "update program set thumbnailw92=null where id=$id and thumbnailw92 is not null"
+    $DB "update program set thumbnailw154=null where mainprogramid=$id and thumbnailw154 is not null and thumbnailw154=(select thumbnailw154 from program where id=$id)"
+    $DB "update program set thumbnailw154=null where id=$id and thumbnailw154 is not null"
+    $DB "update program set thumbnailw780=null where mainprogramid=$id and thumbnailw780 is not null and thumbnailw780=(select thumbnailw780 from program where id=$id)"
+    $DB "update program set thumbnailw780=null where id=$id and thumbnailw780 is not null"
+}
+
+function removeposter
+{
+    id=$1
+    [ -z "$id" ] && {
+	echo "removeposter <id>"
+	return 1
+    }
+
+    $DB "update program set poster=null where id=$id and poster is not null"
+    $DB "update program set posterw92=null where id=$id and posterw92 is not null"
+    $DB "update program set posterw154=null where id=$id and posterw154 is not null"
+}
+
+function removecast
+{
+    id=$1
+    [ -z "$id" ] && {
+	echo "removecast <id>"
+	return 1
+    }
+
+    $DB "delete from casting where programid=$id"
+}
+
+function removesummary
+{
+    id=$1
+    [ -z "$id" ] && {
+	echo "removesummary <id>"
+	return 1
+    }
+
+    $DB "update program set summary=null where id=$id"
+}
+
+function removepeopleposter
+{
+    id=$1
+    [ -z "$id" ] && {
+	echo "removepeopleposter <id>"
+	return 1
+    }
+
+    $DB "update people set postersmall=null where id=$id and postersmall is not null"
+    $DB "update people set postermedium=null where id=$id and postermedium is not null"
+    $DB "update people set posterlarge=null where id=$id and posterlarge is not null"
+}
+
+function setname
+{
+    id=$1
+    name=$2
+    [ -z "$id" -o -z "$name" ] && {
+	echo "setname <id> <name>"
+	return 1
+    }
+
+    curname=$($DB "select name from program where id=$id")
+    $DB "update program set name='$name' where id=$id"
+    $DB "update program set mainprogramname='$name' where mainprogramid=$id"
+    $DB "update program set name='$name' where mainprogramid=$id and name='$curname'"
+}
+
+function setlanguage
+{
+    id=$1
+    lang=$2
+    [ -z "$id" -o -z "$lang" ] && {
+	echo "setlanguage <id> <lang>"
+	return 1
+    }
+
+    $DB "update program set language='$lang' where id=$id or mainprogramid=$id"
+}
+
+function casting
+{
+    programid=$1
+    [ -z "$programid" ] && {
+	echo "casting <programid>"
+	return 1
+    }
+
+    $db "select * from casting where programid=$programid"
+}
+
+function programsources
+{
+    programid=$1
+    [ -z "$programid" ] && {
+	echo "programsources <programid>"
+	return 1
+    }
+
+    $db "select * from programsources where programid=$programid"
+}
+
+function channelsources
+{
+    local channelid=$1
+    [ -z "$channelid" ] && {
+	echo "channelsources <channelid>"
+	return 1
+    }
+
+    $db "select * from channelsources where channelid=$channelid"
+}
+
+function postsocial
+{
+    [ "$1" == "cprog" ] && {
+	cprogid=$2
+	progid=$($DB "select programid from channelprogram where id=$cprogid")
+	[ -z "$progid" ] && {
+	    echo "Failed to find programid for channelprogram $cprogid"
+	    return 1
+	}
+
+	delay=$3
+	[ -z "$delay" ] && delay=0
+
+	mainprogid=$($DB "select mainprogramid from program where id=$progid")
+	! [ -z "$mainprogid" ] && progid=$mainprogid
+
+	echo
+	echo Facebook Debugger : https://developers.facebook.com/tools/debug/
+	echo https://developers.facebook.com/tools/debug/sharing/?q=https://tvwiz.in/app/app/channelProgram/0/$progid/OnTV?cprogid=$cprogid
+	echo https://tvwiz.in/app/app/channelProgram/0/$progid/OnTV?cprogid=$cprogid
+	echo
+
+	nohup node ~/scraper/facebook.cmd.js cprog $cprogid $delay "$4" "$5"  &
+	nohup node ~/scraper/twitter.cmd.js cprog $cprogid $delay "$4" "$5"  &
+    }
+
+    [ "$1" == "hotstar" -o "$1" == "spuul" -o "$1" == "sonyliv" -o "$1" == "hotstar" -o "$1" == "eros" -o "$1" == "voot" -o "$1" == "boxtv" -o "$1" == "ozee" -o "$1" == "sunnxt" -o "$1" == "youtube" ] && {
+	progid=$2
+	progname=$($DB "select name from program where id=$progid")
+	[ -z "$progname" ] && {
+	    echo "Failed to find name for program $progid"
+	    return 1
+	}
+
+	delay=$3
+	[ -z "$delay" ] && delay=0
+
+	echo
+	echo Facebook Debugger : https://developers.facebook.com/tools/debug/
+	echo https://developers.facebook.com/tools/debug/sharing?q=https://tvwiz.in/app/app/channelProgram/0/$progid/OnTV
+	echo https://tvwiz.in/app/app/channelProgram/0/$progid/OnTV
+	echo
+
+	nohup node ~/scraper/facebook.cmd.js "$1" $progid $delay "$4" "$5"  &
+	nohup node ~/scraper/twitter.cmd.js "$1" $progid $delay "$4" "$5"  &
+    }
+
+    return 0
+}
+
+function provider
+{
+    name=$1
+    [ -z "$name" ] && {
+	echo "provider <name>"
+	return 1
+    }
+
+    $db "select * from channelprovider where name='$name'"
+    $db "select * from usersettings where key='dthprovider' and value='$name'"
+    $db "select count(*) from tvchannel where providername='$name'"
+}
+
+function deletecast
+{
+    programid=$1
+    [ -z "$programid" ] && {
+	echo "deletecast <programid>"
+	return 1
+    }
+
+    $db "delete from casting where programid=$programid"
+}
+
+function apiusers
+{
+    $db "select * from apiusers"
+}
+
+function resetsummary
+{
+    id=$1
+    [ -z "$id" ] && {
+	echo "resetsummary <id>"
+	return 1
+    }
+
+    node ~/scraper/whatson.cmd.js resetsummary $id > /dev/null || {
+	echo "Failed to find reset summary for program by id $id"
+	return 1
+    }
+
+    return 0
+}
+
+function program2srcchannel
+{
+    $DB "select srcchannelid from program where id=$1"
+}
+
+function lowercase
+{
+    echo "$1" | tr '[:upper:]' '[:lower:]'
+}
+
+function episodes
+{
+    programid=$1
+    [ -z "$programid" ] && {
+	echo "episodes <programid>"
+	return 1
+    }
+
+    $db "select * from program where mainprogramid=$programid"
+}
+
+. "/root/.acme.sh/acme.sh.env"
+
