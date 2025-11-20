@@ -1,0 +1,13 @@
+# Cursor Rules for Scripts
+
+## Commit Message Format
+
+When creating commit messages, always append "AI-generated: <percentage>" to indicate the percentage of code that was AI-generated.
+
+Example commit messages:
+- "feat: Add new script AI-generated: 80%"
+- "fix: Resolve script issue AI-generated: 30%"
+- "docs: Update documentation AI-generated: 100%"
+
+The percentage should reflect the approximate amount of code/content that was generated or significantly modified by AI assistance.
+
