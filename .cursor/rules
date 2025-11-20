@@ -2,12 +2,25 @@
 
 ## Commit Message Format
 
-When creating commit messages, always append "AI-generated: <percentage>" to indicate the percentage of code that was AI-generated.
+When creating commit messages, always add "AI-generated: <percentage>" as the last line of the commit message, with an empty line before it. Do NOT add AI-generated to the first line of the commit message.
 
 Example commit messages:
-- "feat: Add new script AI-generated: 80%"
-- "fix: Resolve script issue AI-generated: 30%"
-- "docs: Update documentation AI-generated: 100%"
+```
+feat: Add new script
+
+AI-generated: 80%
+```
+
+```
+fix: Resolve script issue
+
+AI-generated: 30%
+```
+
+```
+docs: Update documentation
+
+AI-generated: 100%
+```
 
 The percentage should reflect the approximate amount of code/content that was generated or significantly modified by AI assistance.
-
